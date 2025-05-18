@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 import { EmbeddingsModule } from './modules/embeddings/embeddings.module';
 import { ToolsModule } from './modules/tools/tools.module';
 import { LLMModule } from './modules/llm/llm.module';
-import { ChatModule } from './modules/chat/chat.module';
+import { AgentModule } from './modules/agent/agent.module';
 
 @Module({
   imports: [
@@ -15,7 +15,7 @@ import { ChatModule } from './modules/chat/chat.module';
     EmbeddingsModule,
     ToolsModule,
     LLMModule,
-    ChatModule,
+    AgentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

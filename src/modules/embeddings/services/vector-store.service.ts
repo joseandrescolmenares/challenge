@@ -10,7 +10,6 @@ type AddDocumentsResult =
   | { success: boolean; error?: string; response?: Record<string, unknown> }
   | AddDocumentsResult[];
 
-// Definir interfaces para los resultados de búsqueda para evitar 'any'
 export interface SearchResult {
   pageContent: string;
   metadata: Record<string, unknown>;
@@ -35,16 +34,13 @@ export class VectorStoreService implements OnModuleInit {
   constructor(private configService: ConfigService) {
     const apiKey = this.configService.get<string>('OPENAI_API_KEY');
 
-    // Inicializar OpenAI Embeddings con el modelo correcto
     const embeddings = new OpenAIEmbeddings({
       modelName: 'text-embedding-3-small',
       openAIApiKey: apiKey,
     });
 
-    // Configurar Chroma de LangChain
     this.vectorStore = new Chroma(embeddings, {
       collectionName: this.COLLECTION_NAME,
-      url: 'http://localhost:8000',
       collectionMetadata: {
         'hnsw:space': 'cosine',
       },
@@ -54,33 +50,23 @@ export class VectorStoreService implements OnModuleInit {
   }
 
   onModuleInit(): void {
-    // Completamos la inicialización al arrancar
     this.isInitialized = true;
     console.log('Servicio de vectores inicializado correctamente');
   }
 
-  /**
-   * Inicializa la conexión con Chroma y la colección si es necesario
-   */
   initChroma(): void {
-    // Ya inicializamos en el constructor, marcamos como inicializado
     if (!this.isInitialized) {
       this.isInitialized = true;
       console.log('Conexión con Chroma inicializada');
     }
   }
 
-  /**
-   * Añade documentos al almacén de vectores
-   * Compatible con el método usado en DocumentLoaderService
-   */
   async addDocuments(
     documents: string[],
     ids: string[],
     metadatas?: Record<string, unknown>[],
   ): Promise<AddDocumentsResult> {
     try {
-      // Validaciones básicas
       if (!Array.isArray(documents) || !Array.isArray(ids)) {
         throw new Error('Los documentos e IDs deben ser arrays');
       }
@@ -95,7 +81,6 @@ export class VectorStoreService implements OnModuleInit {
         );
       }
 
-      // Convertir strings a documentos de LangChain
       const langchainDocs = documents.map((text, i) => {
         return new LangchainDocument({
           pageContent: text,
@@ -103,7 +88,6 @@ export class VectorStoreService implements OnModuleInit {
         });
       });
 
-      // Añadir documentos usando la API de LangChain Chroma
       await this.vectorStore.addDocuments(langchainDocs, { ids });
 
       console.log(
@@ -126,10 +110,6 @@ export class VectorStoreService implements OnModuleInit {
     }
   }
 
-  /**
-   * Consulta documentos similares en el almacén de vectores
-   * Renombrado para mantener compatibilidad con la interfaz anterior
-   */
   async queryDocuments(
     query: string,
     nResults: number = 3,
@@ -137,7 +117,6 @@ export class VectorStoreService implements OnModuleInit {
     try {
       const results = await this.vectorStore.similaritySearch(query, nResults);
 
-      // Transformar resultados al formato esperado por los servicios existentes
       return {
         ids: results.map(
           (doc: SearchResult) => (doc.metadata.id as string) || '',
@@ -151,13 +130,8 @@ export class VectorStoreService implements OnModuleInit {
     }
   }
 
-  /**
-   * Obtiene todos los documentos en el almacén de vectores
-   * Necesario para la función getVectorStoreData en DocumentLoaderService
-   */
   async getAllDocuments(): Promise<VectorStoreResult> {
     try {
-      // Obtener todos los documentos usando una búsqueda vacía con límite alto
       const results = await this.vectorStore.similaritySearch('', 1000);
 
       return {
@@ -166,7 +140,7 @@ export class VectorStoreService implements OnModuleInit {
         ),
         documents: results.map((doc: SearchResult) => doc.pageContent),
         metadatas: results.map((doc: SearchResult) => doc.metadata),
-        embeddings: [], // No podemos obtener embeddings directamente con LangChain
+        embeddings: [],
       };
     } catch (error) {
       console.error('Error obteniendo documentos de Chroma:', error);

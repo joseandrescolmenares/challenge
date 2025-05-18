@@ -9,4 +9,4 @@ import { ToolsModule } from '../tools/tools.module';
   controllers: [ChatController],
   providers: [ChatService],
 })
-export class ChatModule {}
+export class AgentModule {}
