@@ -1,6 +1,3 @@
-/**
- * Esquema para la herramienta de búsqueda en la documentación
- */
 export const searchDocsSchema = {
   type: 'function',
   function: {
@@ -21,10 +18,11 @@ export const searchDocsSchema = {
         limit: {
           type: 'number',
           description: 'Número máximo de resultados a devolver',
-          default: 3,
         },
       },
-      required: ['query'],
+      required: ['query', 'documentType', 'limit'],
+      additionalProperties: false,
     },
+    strict: true,
   },
 };

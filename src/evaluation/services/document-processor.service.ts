@@ -1,16 +1,15 @@
-import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
+import { MarkdownTextSplitter } from 'langchain/text_splitter';
 import { Document as LangchainDocument } from '@langchain/core/documents';
 import * as fs from 'fs';
 import * as path from 'path';
 
 export class DocumentProcessorService {
-  private splitter: RecursiveCharacterTextSplitter;
+  private splitter: MarkdownTextSplitter;
 
   constructor(chunkSize = 500, chunkOverlap = 100) {
-    this.splitter = new RecursiveCharacterTextSplitter({
+    this.splitter = new MarkdownTextSplitter({
       chunkSize,
       chunkOverlap,
-      separators: ['\n## ', '\n### ', '\n\n', '\n', '. ', ', ', ' '],
     });
   }
 

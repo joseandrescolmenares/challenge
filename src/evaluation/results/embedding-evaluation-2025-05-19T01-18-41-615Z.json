@@ -1,0 +1,252 @@
+[
+  {
+    "query": "¿Cómo configurar mi SmartHome Hub por primera vez?",
+    "results": [
+      {
+        "modelName": "OpenAI_Small",
+        "dimensions": 1536,
+        "evaluation": {
+          "score": 9,
+          "reasoning": "All three results provide relevant and specific information for configuring the SmartHome Hub for the first time. They include clear instructions such as downloading the app and activating the hub, directly fulfilling the intent of the query. However, the results are duplicates or near-duplicates, which slightly reduces the diversity and value of the overall results. Otherwise, the substance and alignment with query intent are excellent.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 10,
+              "comments": "Provides step-by-step initial setup instructions directly matching the query's intent. Highly relevant."
+            },
+            {
+              "relevanceScore": 10,
+              "comments": "Identical to the first result, contains relevant setup instructions. Penalized only for redundancy, not content."
+            },
+            {
+              "relevanceScore": 10,
+              "comments": "Again, a near-duplicate of the prior results with all necessary setup details. Perfectly relevant but adds no new unique information."
+            }
+          ]
+        }
+      },
+      {
+        "modelName": "Cohere_Medium",
+        "dimensions": 768,
+        "evaluation": {
+          "score": 9,
+          "reasoning": "All retrieved results provide clear, step-by-step instructions that directly answer how to set up the SmartHome Hub for the first time. Although all three results appear to be near-duplicates or even verbatim repeats, their content is highly relevant and completely matches the user's intent. No off-topic or poorly aligned results. The only reason for not giving a perfect 10 is the lack of diversity or supplementary tips, but the core informational need is fulfilled thoroughly.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 10,
+              "comments": "Directly and clearly explains how to set up the SmartHome Hub for the first time with concrete steps, matching the query precisely."
+            },
+            {
+              "relevanceScore": 10,
+              "comments": "Content is essentially identical to the first result, providing fully relevant instructions for the SmartHome Hub's initial setup."
+            },
+            {
+              "relevanceScore": 10,
+              "comments": "Another duplicate of the previous results, but still completely relevant and fulfills the user's query."
+            }
+          ]
+        }
+      }
+    ],
+    "timestamp": "2025-05-19T01:17:56.975Z"
+  },
+  {
+    "query": "¿Qué hago si mi dispositivo no se conecta?",
+    "results": [
+      {
+        "modelName": "OpenAI_Small",
+        "dimensions": 1536,
+        "evaluation": {
+          "score": 5,
+          "reasoning": "The overall result set is somewhat helpful, but only one result (r2) begins to provide practical troubleshooting steps for connectivity issues, partially addressing the user's query. The other two results (r0, r1) only reference the general problem without any actionable details, leaving the majority of the user's intent unsatisfied.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 2,
+              "comments": "This result provides only a generic heading ('Problemas de Conexión') without any actionable information or troubleshooting steps."
+            },
+            {
+              "relevanceScore": 2,
+              "comments": "This is another heading ('Dispositivos no detectados') with no content or specific advice, so it does not help answer the user's query."
+            },
+            {
+              "relevanceScore": 8,
+              "comments": "This result offers specific troubleshooting instructions for a device not connecting to WiFi—such as checking credentials and signal—which are directly relevant and helpful for the query, though its focus on 'Hub' may slightly limit generalizability."
+            }
+          ]
+        }
+      },
+      {
+        "modelName": "Cohere_Medium",
+        "dimensions": 768,
+        "evaluation": {
+          "score": 9,
+          "reasoning": "All three results directly address the user's concern about a device not connecting, providing clear troubleshooting steps focused on verifying WiFi credentials and signal quality—both highly relevant to general connectivity issues. While the results are nearly identical (possibly duplicative), they stay precisely on topic, and the advice matches typical user intent for the query. The only aspect preventing a perfect score is the narrow focus on WiFi connectivity (specifically mentioning 'hub' and WiFi), which may slightly limit applicability to all device connection scenarios implied by the query.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 9,
+              "comments": "Direct troubleshooting instructions for connection problems, emphasizing WiFi credential verification and signal strength—highly relevant and actionable. Lacks broader coverage for devices connecting by other means."
+            },
+            {
+              "relevanceScore": 9,
+              "comments": "Essentially the same as the first result: strongly relevant for WiFi and hub connectivity, practical troubleshooting steps. Limited only by specificity to WiFi and possible device variety."
+            },
+            {
+              "relevanceScore": 9,
+              "comments": "Reiterates the same core guidance as other results—highly targeted at the user's likely intention, but could marginally improve by addressing other connectivity types (such as Bluetooth or mobile networks)."
+            }
+          ]
+        }
+      }
+    ],
+    "timestamp": "2025-05-19T01:18:06.495Z"
+  },
+  {
+    "query": "¿Cuáles son los requisitos de red para el Hub?",
+    "results": [
+      {
+        "modelName": "OpenAI_Small",
+        "dimensions": 1536,
+        "evaluation": {
+          "score": 3,
+          "reasoning": "All the retrieved results are essentially duplicates, focusing on the physical placement of the Hub in the home for optimal signal reception but do not address the core query about 'requisitos de red' (network requirements). The user's question expects details such as Ethernet vs. WiFi, bandwidth, supported protocols, or specific network configurations needed, none of which are covered. Therefore, despite the advice being tangentially related, the results do not directly provide the requested information.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 3,
+              "comments": "Focuses on physical placement for signal strength; does not address network requirements such as connectivity type, speed, or supported protocols."
+            },
+            {
+              "relevanceScore": 3,
+              "comments": "Identical to the previous result; again, only discusses placement, not the actual network requirements."
+            },
+            {
+              "relevanceScore": 3,
+              "comments": "Also a duplicate, offering no information about the Hub's network requirements."
+            }
+          ]
+        }
+      },
+      {
+        "modelName": "Cohere_Medium",
+        "dimensions": 768,
+        "evaluation": {
+          "score": 7,
+          "reasoning": "The results collectively address key aspects of the network requirements for the Hub, including whether it needs to be always online and the types of network connections supported (Wi-Fi and Ethernet). However, there is redundancy between results 0 and 1, which are nearly identical and focus mainly on the need for a persistent Internet connection rather than detailing all potential network requirements. Result 2 adds value by clarifying Ethernet vs. Wi-Fi usage. None of the results offer an exhaustive list of network requirements (such as ports needed, bandwidth recommendations, or security protocols), so the answer is informative but not comprehensive.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 7,
+              "comments": "Addresses whether the Hub needs a permanent Internet connection and clarifies its local operation, but lacks details on broader network requirements."
+            },
+            {
+              "relevanceScore": 7,
+              "comments": "Very similar to result 0, reiterates information about Internet connectivity vs local operation, but little detail beyond this."
+            },
+            {
+              "relevanceScore": 8,
+              "comments": "Provides information about Wi-Fi and Ethernet compatibility, highlighting a key part of the network requirements. Would be more complete if it also specified other requirements like speeds or security."
+            }
+          ]
+        }
+      }
+    ],
+    "timestamp": "2025-05-19T01:18:15.198Z"
+  },
+  {
+    "query": "Problemas de compatibilidad con dispositivos Z-Wave",
+    "results": [
+      {
+        "modelName": "OpenAI_Small",
+        "dimensions": 1536,
+        "evaluation": {
+          "score": 8,
+          "reasoning": "All three results are essentially identical and directly address problems related to Z-Wave device compatibility. They mention specific common issues (network saturation, failed inclusion) and provide relevant troubleshooting steps, which are highly pertinent to the query. However, none of the snippets explicitly discuss 'compatibility' in terms of device/model interoperability or versions, focusing primarily on connectivity and operational issues. While highly relevant for practical problems, the subtle distinction between device 'compatibility' (as in supported devices, firmware, etc.) and 'operation' issues could be better covered for a perfect score.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 8,
+              "comments": "Addresses common Z-Wave problems and troubleshooting, very relevant. Would be perfect if it directly mentioned specific compatibility situations (e.g., unsupported devices or version mismatches)."
+            },
+            {
+              "relevanceScore": 8,
+              "comments": "Identical to the first result: practical and relevant for most Z-Wave compatibility issues encountered in use."
+            },
+            {
+              "relevanceScore": 8,
+              "comments": "Also identical; directly addresses practical Z-Wave problems, but could better distinguish compatibility (supported models) from connectivity issues."
+            }
+          ]
+        }
+      },
+      {
+        "modelName": "Cohere_Medium",
+        "dimensions": 768,
+        "evaluation": {
+          "score": 9,
+          "reasoning": "All three results directly address problems related to Z-Wave devices and provide actionable troubleshooting steps relevant to compatibility issues. The content of all results is nearly identical, likely due to duplication, but this does not detract from the high relevance to the query intent, which is to understand and solve Z-Wave compatibility problems.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 9,
+              "comments": "Directly addresses typical Z-Wave compatibility issues like network saturation and failed device inclusion, with precise troubleshooting steps."
+            },
+            {
+              "relevanceScore": 9,
+              "comments": "Duplicate of the first result; equally relevant, providing targeted guidance on Z-Wave problems."
+            },
+            {
+              "relevanceScore": 9,
+              "comments": "Same content as prior results, thoroughly relevant for the query regarding Z-Wave compatibility."
+            }
+          ]
+        }
+      }
+    ],
+    "timestamp": "2025-05-19T01:18:26.344Z"
+  },
+  {
+    "query": "¿Cómo actualizar el firmware?",
+    "results": [
+      {
+        "modelName": "OpenAI_Small",
+        "dimensions": 1536,
+        "evaluation": {
+          "score": 3,
+          "reasoning": "All three results essentially duplicate the same snippet, which discusses how to schedule or delay firmware updates but does not address the primary intent of the query: instructions or steps on how to actually perform a firmware update. Thus, while tangentially related, the results do not adequately answer the user's question about 'how to update firmware.'",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 3,
+              "comments": "Mentions scheduling or delaying firmware updates, but fails to explain the updating process itself. Only partially relevant."
+            },
+            {
+              "relevanceScore": 3,
+              "comments": "Duplicate of the first result. Provides information about postponement, not about actual firmware update procedures."
+            },
+            {
+              "relevanceScore": 3,
+              "comments": "Also a duplicate; repeats information on timing updates, but not on how to perform them."
+            }
+          ]
+        }
+      },
+      {
+        "modelName": "Cohere_Medium",
+        "dimensions": 768,
+        "evaluation": {
+          "score": 2,
+          "reasoning": "All three results provide information about how frequently the firmware is updated but do not answer the main intent of the query, which is to explain the process or steps for updating the firmware. Users likely want to know how they themselves can carry out a firmware update, not when or how often updates are released. The complete lack of procedural or instructional content results in a low score.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 2,
+              "comments": "Mentions the frequency of firmware updates but gives no instructions or procedural info on how to perform an update."
+            },
+            {
+              "relevanceScore": 2,
+              "comments": "Duplicate of the first result; also lacks actionable 'how-to' information relevant to the user's query."
+            },
+            {
+              "relevanceScore": 2,
+              "comments": "Identical to the first two. Again, only covers update schedules without answering 'how' to update firmware."
+            }
+          ]
+        }
+      }
+    ],
+    "timestamp": "2025-05-19T01:18:34.442Z"
+  }
+]

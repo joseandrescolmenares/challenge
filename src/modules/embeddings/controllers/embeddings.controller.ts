@@ -4,10 +4,8 @@ import {
   VectorStoreDataResult,
 } from '../services/document-loader.service';
 import { Query } from '@nestjs/common';
-import {
-  VectorStoreService,
-  VectorStoreResult,
-} from '../services/vector-store.service';
+import { VectorStoreService } from '../services/vector-store.service';
+import { QueryResult } from '../interfaces/embedding.interfaces';
 
 @Controller('embeddings')
 export class EmbeddingsController {
@@ -22,11 +20,8 @@ export class EmbeddingsController {
   }
 
   @Get('query')
-  async queryDocuments(
-    @Query('query') query: string,
-  ): Promise<VectorStoreResult> {
-    // Si no hay consulta, proporcionamos una predeterminada
-    const searchQuery = query || '¿Qué es un SmartHome Hub?';
+  async queryDocuments(@Query('query') query: string): Promise<QueryResult> {
+    const searchQuery = query || '¿Qué hago si mi dispositivo no se conecta?';
     return await this.vectorStoreService.queryDocuments(searchQuery);
   }
 }

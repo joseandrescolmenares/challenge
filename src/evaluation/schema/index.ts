@@ -6,9 +6,6 @@ export const evaluationResponseSchema = z.object({
   relevanceAnalysis: z
     .array(
       z.object({
-        resultIndex: z
-          .number()
-          .describe('Index of the evaluated result (0-based)'),
         relevanceScore: z
           .number()
           .describe('Individual relevance score from 1 to 10'),

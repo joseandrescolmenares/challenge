@@ -1,5 +1,5 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { ChatService } from '../services/chat.service';
+import { ChatService } from '../services/proccesMessage.service';
 import { ChatRequestDto } from '../dto/chat-request.dto';
 import { v4 as uuid } from 'uuid';
 
@@ -12,7 +12,7 @@ export class ChatController {
     const conversationId = chatRequest.conversationId || uuid();
     return await this.chatService.processMessage(
       conversationId,
-      chatRequest.message,
+      chatRequest.message || 'Hola, como funciona el hub?',
     );
   }
 }

@@ -4,8 +4,8 @@ export class ChatRequestDto {
   @IsString()
   @IsNotEmpty()
   message: string;
-  
+
   @IsString()
   @IsOptional()
   conversationId?: string;
-} 
+}

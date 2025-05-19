@@ -4,39 +4,27 @@ import { ChromaClient, Collection } from 'chromadb';
 import { Document as LangchainDocument } from '@langchain/core/documents';
 import { Chroma } from '@langchain/community/vectorstores/chroma';
 import { OpenAIEmbeddings } from '@langchain/openai';
+import { QueryResult } from '../interfaces/embedding.interfaces';
 
 // Definir tipo para el resultado de addDocuments
 type AddDocumentsResult =
   | { success: boolean; error?: string; response?: Record<string, unknown> }
   | AddDocumentsResult[];
 
-export interface SearchResult {
-  pageContent: string;
-  metadata: Record<string, unknown>;
-}
-
-export interface VectorStoreResult {
-  ids: string[];
-  documents: string[];
-  metadatas: Record<string, unknown>[];
-  embeddings?: number[][];
-}
-
 @Injectable()
 export class VectorStoreService implements OnModuleInit {
   private client: ChromaClient;
   private collection: Collection | null = null;
   private isInitialized = false;
-  private readonly COLLECTION_NAME = 'tech-support-assistant-openai';
+  private readonly COLLECTION_NAME = 'tech-support-assistant';
   private embeddings: OpenAIEmbeddings;
   private vectorStore: Chroma;
 
   constructor(private configService: ConfigService) {
-    const apiKey = this.configService.get<string>('OPENAI_API_KEY');
-
+    const openaiApiKey = this.configService.get<string>('OPENAI_API_KEY');
     const embeddings = new OpenAIEmbeddings({
       modelName: 'text-embedding-3-small',
-      openAIApiKey: apiKey,
+      apiKey: openaiApiKey,
     });
 
     this.vectorStore = new Chroma(embeddings, {
@@ -67,20 +55,6 @@ export class VectorStoreService implements OnModuleInit {
     metadatas?: Record<string, unknown>[],
   ): Promise<AddDocumentsResult> {
     try {
-      if (!Array.isArray(documents) || !Array.isArray(ids)) {
-        throw new Error('Los documentos e IDs deben ser arrays');
-      }
-
-      if (documents.length !== ids.length) {
-        throw new Error('La cantidad de documentos e IDs debe ser igual');
-      }
-
-      if (metadatas && metadatas.length !== documents.length) {
-        throw new Error(
-          'La cantidad de metadatas debe ser igual a la de documentos',
-        );
-      }
-
       const langchainDocs = documents.map((text, i) => {
         return new LangchainDocument({
           pageContent: text,
@@ -91,7 +65,7 @@ export class VectorStoreService implements OnModuleInit {
       await this.vectorStore.addDocuments(langchainDocs, { ids });
 
       console.log(
-        `${documents.length} documentos añadidos a Chroma (colección: ${this.COLLECTION_NAME}) con embeddings de dimensión 1536`,
+        `${documents.length} documentos añadidos a Chroma (colección: ${this.COLLECTION_NAME}) con embeddings de dimensión`,
       );
 
       return {
@@ -112,17 +86,15 @@ export class VectorStoreService implements OnModuleInit {
 
   async queryDocuments(
     query: string,
-    nResults: number = 3,
-  ): Promise<VectorStoreResult> {
+    nResults: number = 1,
+  ): Promise<QueryResult> {
     try {
       const results = await this.vectorStore.similaritySearch(query, nResults);
 
       return {
-        ids: results.map(
-          (doc: SearchResult) => (doc.metadata.id as string) || '',
-        ),
-        documents: results.map((doc: SearchResult) => doc.pageContent),
-        metadatas: results.map((doc: SearchResult) => doc.metadata),
+        ids: results.map((doc) => (doc.metadata.id as string) || ''),
+        documents: results.map((doc) => doc.pageContent),
+        metadatas: results.map((doc) => doc.metadata),
       };
     } catch (error) {
       console.error('Error al consultar documentos:', error);
@@ -130,16 +102,14 @@ export class VectorStoreService implements OnModuleInit {
     }
   }
 
-  async getAllDocuments(): Promise<VectorStoreResult> {
+  async getAllDocuments(): Promise<QueryResult> {
     try {
       const results = await this.vectorStore.similaritySearch('', 1000);
 
       return {
-        ids: results.map(
-          (doc: SearchResult) => (doc.metadata.id as string) || '',
-        ),
-        documents: results.map((doc: SearchResult) => doc.pageContent),
-        metadatas: results.map((doc: SearchResult) => doc.metadata),
+        ids: results.map((doc) => (doc.metadata.id as string) || ''),
+        documents: results.map((doc) => doc.pageContent),
+        metadatas: results.map((doc) => doc.metadata),
         embeddings: [],
       };
     } catch (error) {

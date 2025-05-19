@@ -3,6 +3,7 @@ import { EvaluationResponse, evaluationResponseSchema } from '../schema';
 import { Document as LangchainDocument } from '@langchain/core/documents';
 import { evaluatePrompt } from '../utils/prompt/evaluate.utils.prompt';
 import { AIRole } from '../../modules/llm/enum/roles.enum';
+import { OpenAIModel } from 'src/modules/llm/enum/model.enum';
 export class EvaluatorService {
   private llmService: LLMService;
 
@@ -37,6 +38,7 @@ export class EvaluatorService {
         null,
         'auto',
         evaluationResponseSchema,
+        OpenAIModel.GPTO3_MINI,
       );
 
       let evaluation: EvaluationResponse;

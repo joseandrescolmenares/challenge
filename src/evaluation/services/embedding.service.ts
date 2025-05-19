@@ -3,13 +3,8 @@ import { CohereEmbeddings } from '@langchain/cohere';
 import { Embeddings } from '@langchain/core/embeddings';
 import { Chroma } from '@langchain/community/vectorstores/chroma';
 import { Document as LangchainDocument } from '@langchain/core/documents';
-
-export interface EmbeddingModel {
-  name: string;
-  modelName: string;
-  dimensions: number;
-  provider: string;
-}
+import { AIProvider } from '../../modules/llm/enum/roles.enum';
+import { EmbeddingModel } from '../../modules/embeddings/interfaces/embedding.interfaces';
 
 export class EmbeddingService {
   private vectorStores: Map<string, Chroma> = new Map();
@@ -31,7 +26,7 @@ export class EmbeddingService {
     let embeddings: Embeddings;
 
     switch (model.provider) {
-      case 'openai':
+      case AIProvider.OPENAI:
         if (!apiKeys.openai) {
           throw new Error('OpenAI API key not configured');
         }
@@ -41,7 +36,7 @@ export class EmbeddingService {
         });
         break;
 
-      case 'cohere':
+      case AIProvider.COHERE:
         if (!apiKeys.cohere) {
           throw new Error('Cohere API key not configured');
         }
@@ -52,7 +47,7 @@ export class EmbeddingService {
         break;
 
       default:
-        throw new Error(`Provider not supported: ${model.provider}`);
+        throw new Error(`Provider not supported`);
     }
 
     this.embeddings.set(model.name, embeddings);

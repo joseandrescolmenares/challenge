@@ -7,13 +7,16 @@
 
 import * as path from 'path';
 import { DocumentProcessorService } from '../services/document-processor.service';
-import {
-  EmbeddingService,
-  EmbeddingModel,
-} from '../services/embedding.service';
+// import {
+//   EmbeddingService,
+//   EmbeddingModel,
+// } from '../services/embedding.service';
 import { EvaluatorService } from '../services/evaluator.service';
 import { ReportService } from '../services/report.service';
 import { EvaluationResponse } from '../schema';
+import { AIProvider } from '../../modules/llm/enum/roles.enum';
+import { EmbeddingModel } from 'src/modules/embeddings/interfaces/embedding.interfaces';
+import { EmbeddingService } from '../services/embedding.service';
 
 const TEST_QUERIES = [
   '¿Cómo configurar mi SmartHome Hub por primera vez?',
@@ -23,18 +26,18 @@ const TEST_QUERIES = [
   '¿Cómo actualizar el firmware?',
 ];
 
-const EMBEDDING_MODELS: EmbeddingModel[] = [
+export const EMBEDDING_MODELS: EmbeddingModel[] = [
   {
     name: 'OpenAI_Small',
     modelName: 'text-embedding-3-small',
     dimensions: 1536,
-    provider: 'openai',
+    provider: AIProvider.OPENAI,
   },
   {
     name: 'Cohere_Medium',
     modelName: 'embed-multilingual-v3.0',
     dimensions: 768,
-    provider: 'cohere',
+    provider: AIProvider.COHERE,
   },
 ];
 

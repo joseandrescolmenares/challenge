@@ -40,9 +40,10 @@ export class LLMService {
     tools: ChatCompletionTool[] | null = null,
     toolChoice: ChatCompletionToolChoiceOption = 'auto',
     schema: z.ZodSchema<T> | null = null,
+    model: OpenAIModel = this.defaultModel,
   ) {
     const params: ChatCompletionCreateParamsNonStreaming = {
-      model: this.defaultModel,
+      model: model || this.defaultModel,
       messages,
       temperature: 0.1,
       max_tokens: 1000,
@@ -56,11 +57,10 @@ export class LLMService {
     try {
       console.log('Requesting completion from OpenAI...');
 
-      // Si se proporciona un esquema, usar el parseador de zod
       if (schema) {
         try {
           const parsed = await this.openai.beta.chat.completions.parse({
-            model: this.defaultModel,
+            model: model || this.defaultModel,
             messages,
             max_tokens: 1000,
             response_format: zodResponseFormat(schema, 'response'),

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ChatController } from './controllers/chat.controller';
-import { ChatService } from './services/chat.service';
+import { ChatService } from './services/proccesMessage.service';
 import { LLMModule } from '../llm/llm.module';
 import { ToolsModule } from '../tools/tools.module';
 

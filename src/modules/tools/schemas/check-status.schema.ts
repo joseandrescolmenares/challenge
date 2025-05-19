@@ -1,6 +1,3 @@
-/**
- * Esquema para la herramienta de verificación de estado del servicio
- */
 export const checkStatusSchema = {
   type: 'function',
   function: {
@@ -18,7 +15,9 @@ export const checkStatusSchema = {
           default: 'all',
         },
       },
-      required: [],
+      required: ['service'],
+      additionalProperties: false,
     },
+    strict: true,
   },
 };

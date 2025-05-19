@@ -1,0 +1,55 @@
+{
+  "tickets": [
+    {
+      "id": "TK-001",
+      "title": "Problema de conexión WiFi",
+      "description": "Mi SmartHome Hub X1000 no se conecta a la red WiFi después de un corte de energía",
+      "status": "open",
+      "createdAt": "2023-05-17T14:32:00Z",
+      "userId": "user123",
+      "priority": "high"
+    },
+    {
+      "id": "TK-002",
+      "title": "Sensor de temperatura no registra lecturas",
+      "description": "El sensor de temperatura de la habitación principal dejó de enviar datos hace 2 días",
+      "status": "in_progress",
+      "createdAt": "2023-05-18T09:15:00Z",
+      "userId": "user456",
+      "assignedTo": "tech_support_1",
+      "priority": "medium"
+    },
+    {
+      "id": "TK-003",
+      "title": "Actualización fallida de firmware",
+      "description": "Al intentar actualizar el firmware a la versión 2.4.1, el proceso se interrumpe al 67%",
+      "status": "open",
+      "createdAt": "2023-05-18T16:45:00Z",
+      "userId": "user789",
+      "priority": "critical"
+    },
+    {
+      "id": "TK-004",
+      "title": "Luces inteligentes no responden a los comandos de voz",
+      "description": "Las luces de la cocina y del salón no responden a los comandos de voz, pero funcionan desde la aplicación",
+      "status": "resolved",
+      "createdAt": "2023-05-16T11:20:00Z",
+      "resolvedAt": "2023-05-16T14:10:00Z",
+      "userId": "user234",
+      "assignedTo": "tech_support_2",
+      "resolution": "Se reinició el módulo de control de voz y se recalibró el micrófono",
+      "priority": "low"
+    },
+    {
+      "id": "TK-005",
+      "title": "Error al vincular cámara de seguridad",
+      "description": "Al intentar añadir una nueva cámara de seguridad, aparece el error '504: Device not compatible'",
+      "status": "in_progress",
+      "createdAt": "2023-05-19T08:30:00Z",
+      "userId": "user567",
+      "assignedTo": "tech_support_3",
+      "priority": "medium"
+    }
+  ],
+  "lastId": 5
+} 

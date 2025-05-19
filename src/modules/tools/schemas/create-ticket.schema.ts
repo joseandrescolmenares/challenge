@@ -28,7 +28,9 @@ export const createTicketSchema = {
           description: 'Email de contacto para seguimiento',
         },
       },
-      required: ['title', 'description'],
+      required: ['title', 'description', 'priority', 'contactEmail'],
+      additionalProperties: false,
     },
+    strict: true,
   },
 };
