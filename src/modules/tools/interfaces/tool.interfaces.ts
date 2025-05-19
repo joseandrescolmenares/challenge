@@ -15,18 +15,6 @@ export interface DocumentResult {
   url: string;
 }
 
-/**
- * Argumentos para la búsqueda en documentación
- */
-export interface SearchDocsArgs {
-  query: string;
-  documentType?: string;
-  limit?: number;
-}
-
-/**
- * Argumentos para la creación de tickets
- */
 export interface CreateTicketArgs {
   title: string;
   description: string;

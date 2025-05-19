@@ -42,6 +42,7 @@ export interface QueryResult {
   documents: string[];
   metadatas: Record<string, unknown>[];
   embeddings?: number[][];
+  urls?: string[];
 }
 
 /**

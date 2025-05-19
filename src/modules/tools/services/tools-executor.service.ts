@@ -3,9 +3,6 @@ import { VectorStoreService } from '../../embeddings/services/vector-store.servi
 import {
   CheckStatusArgs,
   CreateTicketArgs,
-  DocumentResult,
-  QueryResult,
-  SearchDocsArgs,
   ServiceStatuses,
   ToolCall,
   ToolResult,
@@ -15,21 +12,13 @@ import {
 export class ToolsExecutorService {
   constructor(private readonly vectorStoreService: VectorStoreService) {}
 
-  async executeToolCall(toolCall: ToolCall): Promise<ToolResult> {
+  executeToolCall(toolCall: ToolCall): ToolResult {
     try {
       const { name, arguments: args } = toolCall.function;
       const parsedArgs: unknown =
         typeof args === 'string' ? JSON.parse(args) : args;
 
       switch (name) {
-        case 'searchDocs': {
-          const typedArgs = parsedArgs as SearchDocsArgs;
-          return this.searchDocumentation(
-            typedArgs.query,
-            typedArgs.documentType,
-            typedArgs.limit,
-          );
-        }
         case 'createTicket': {
           const typedArgs = parsedArgs as CreateTicketArgs;
           return this.createSupportTicket(
@@ -54,50 +43,6 @@ export class ToolsExecutorService {
         details: error instanceof Error ? error.message : String(error),
       };
     }
-  }
-
-  private async searchDocumentation(
-    query: string,
-    documentType?: string,
-    maxResults: number = 3,
-  ): Promise<ToolResult> {
-    console.log(
-      `Buscando "${query}" en documentos${documentType ? ' de tipo ' + documentType : ''}`,
-    );
-
-    const results = (await this.vectorStoreService.queryDocuments(
-      query,
-      maxResults || 3,
-    )) as QueryResult;
-
-    // Crear un array de resultados formateados a partir de los documentos y metadatos
-    const formattedResults: DocumentResult[] = [];
-    for (let i = 0; i < results.documents.length; i++) {
-      const fileName =
-        (results.metadatas[i]?.fileName as string) || 'documento.md';
-
-      formattedResults.push({
-        documentId: results.ids[i] || `doc-${i + 1}`,
-        fileName: fileName,
-        title: this.getDocumentTitle(fileName),
-        relevance: (1 - i * 0.2).toFixed(2), // Simple relevance score based on order
-        excerpt:
-          results.documents[i].substring(0, 300) +
-          (results.documents[i].length > 300 ? '...' : ''),
-        url: `/docs/${fileName}`,
-      });
-    }
-
-    return {
-      success: true,
-      results: formattedResults,
-      totalResults: formattedResults.length,
-      query: query,
-      message:
-        formattedResults.length > 0
-          ? `He encontrado ${formattedResults.length} documento(s) que podrían responder a tu consulta.`
-          : 'No encontré documentos relacionados con tu consulta. Por favor, intenta con términos diferentes.',
-    };
   }
 
   private getDocumentTitle(fileName: string): string {

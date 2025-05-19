@@ -7,7 +7,8 @@ import {
   ChatCompletionMessageToolCall,
 } from 'openai/resources/chat/completions';
 import { AIRole } from 'src/modules/llm/enum/roles.enum';
-
+import { VectorStoreService } from '../../embeddings/services/vector-store.service';
+import { agentPrompt } from '../utils/prompts/agent.prompt';
 interface AssistantMessage {
   content: string | null;
   tool_calls?: Array<ChatCompletionMessageToolCall>;
@@ -29,6 +30,7 @@ export class ChatService {
     private readonly llmService: LLMService,
     private readonly toolsRegistryService: ToolsRegistryService,
     private readonly toolsExecutorService: ToolsExecutorService,
+    private readonly vectorStoreService: VectorStoreService,
   ) {}
 
   async processMessage(
@@ -36,11 +38,15 @@ export class ChatService {
     message: string,
   ): Promise<{ message: string; history: ChatCompletionMessageParam[] }> {
     const history = this.conversationHistory.get(conversationId) || [];
+
+    const documentation = await this.vectorStoreService.queryDocuments(message);
+
+    console.log(documentation, 'documentation');
+
     if (history.length === 0) {
       history.push({
         role: AIRole.SYSTEM,
-        content:
-          'Eres un asistente técnico especializado en el SmartHome Hub X1000. Tu objetivo es ayudar a los clientes a resolver sus dudas y problemas técnicos utilizando la documentación oficial. Si no puedes encontrar la respuesta en la documentación, ayuda al cliente a crear un ticket de soporte. Responde en un tono profesional pero amigable. Responde siempre en español. utiliza las herramientas que te proporcione el usuario para resolver el problema.',
+        content: agentPrompt(documentation).system,
       });
     }
 
@@ -54,12 +60,6 @@ export class ChatService {
     const assistantMessage = response.choices[0].message;
 
     console.log(assistantMessage, 'assistantMessage');
-
-    history.push({
-      role: 'assistant',
-      content: assistantMessage.content || null,
-      tool_calls: assistantMessage.tool_calls,
-    });
 
     if (
       !assistantMessage.tool_calls ||
@@ -76,6 +76,12 @@ export class ChatService {
         message: assistantMessage.content || '',
         history: history,
       };
+    } else {
+      history.push({
+        role: 'assistant',
+        content: assistantMessage.content || null,
+        tool_calls: assistantMessage.tool_calls,
+      });
     }
 
     console.log(
@@ -83,7 +89,7 @@ export class ChatService {
     );
 
     for (const toolCall of assistantMessage.tool_calls) {
-      const result = await this.toolsExecutorService.executeToolCall(toolCall);
+      const result = this.toolsExecutorService.executeToolCall(toolCall);
 
       history.push({
         role: 'tool',

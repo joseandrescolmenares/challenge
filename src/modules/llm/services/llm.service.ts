@@ -86,7 +86,6 @@ export class LLMService {
           throw new Error('Error al procesar la respuesta estructurada');
         }
       } else {
-        // Caso estándar sin esquema
         const response = await this.openai.chat.completions.create(params);
         return response;
       }

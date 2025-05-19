@@ -15,7 +15,6 @@ interface DocMetadata {
   };
   [key: string]: any;
 }
-
 export interface VectorStoreDataResult {
   success: boolean;
   data?: {
@@ -27,7 +26,7 @@ export interface VectorStoreDataResult {
 }
 
 @Injectable()
-export class DocumentLoaderService implements OnModuleInit {
+export class DocumentLoaderService {
   private readonly DOCS_PATH = path.join(process.cwd(), 'data', 'docs');
   private readonly markdownSplitter = new MarkdownTextSplitter({
     chunkSize: 500,
@@ -35,14 +34,14 @@ export class DocumentLoaderService implements OnModuleInit {
   });
   constructor(private readonly vectorStoreService: VectorStoreService) {}
 
-  async onModuleInit() {
-    try {
-      await this.loadDocuments();
-      console.log('Documentos técnicos cargados correctamente');
-    } catch (error) {
-      console.error('Error cargando documentos:', error);
-    }
-  }
+  // async onModuleInit() {
+  //   try {
+  //     await this.loadDocuments();
+  //     console.log('Documentos técnicos cargados correctamente');
+  //   } catch (error) {
+  //     console.error('Error cargando documentos:', error);
+  //   }
+  // }
 
   async loadDocuments() {
     if (!fs.existsSync(this.DOCS_PATH)) {

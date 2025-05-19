@@ -95,6 +95,10 @@ export class VectorStoreService implements OnModuleInit {
         ids: results.map((doc) => (doc.metadata.id as string) || ''),
         documents: results.map((doc) => doc.pageContent),
         metadatas: results.map((doc) => doc.metadata),
+        urls: results.map(
+          (doc) =>
+            `${this.configService.get('URL_DOCS')}/${doc.metadata.fileName}`,
+        ),
       };
     } catch (error) {
       console.error('Error al consultar documentos:', error);
@@ -110,7 +114,10 @@ export class VectorStoreService implements OnModuleInit {
         ids: results.map((doc) => (doc.metadata.id as string) || ''),
         documents: results.map((doc) => doc.pageContent),
         metadatas: results.map((doc) => doc.metadata),
-        embeddings: [],
+        urls: results.map(
+          (doc) =>
+            `${this.configService.get('URL_DOCS')}/${doc.metadata.fileName}`,
+        ),
       };
     } catch (error) {
       console.error('Error obteniendo documentos de Chroma:', error);
