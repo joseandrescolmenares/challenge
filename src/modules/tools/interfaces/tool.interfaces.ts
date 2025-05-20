@@ -64,3 +64,18 @@ export interface ToolSchema {
     strict: boolean;
   };
 }
+
+export interface Ticket {
+  id: string;
+  title: string;
+  description: string;
+  status: string;
+  createdAt: string;
+  userId: string;
+  priority: string;
+}
+
+export interface TicketsData {
+  tickets: Ticket[];
+  lastId: number;
+}

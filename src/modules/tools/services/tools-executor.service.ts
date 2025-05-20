@@ -5,7 +5,11 @@ import {
   ServiceStatuses,
   ToolCall,
   ToolResult,
+  TicketsData,
 } from '../interfaces/tool.interfaces';
+
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class ToolsExecutorService {
@@ -35,47 +39,60 @@ export class ToolsExecutorService {
     }
   }
 
-  private getDocumentTitle(fileName: string): string {
-    // Convertir nombre de archivo a título legible
-    const withoutExtension = fileName.replace(/\.[^/.]+$/, '');
-    const withSpaces = withoutExtension.replace(/_/g, ' ');
-    return withSpaces
-      .split(' ')
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
-  }
-
   public createSupportTicket(
     title: string,
     description: string,
     priority: string = 'media',
+    conversationId: string,
   ): ToolResult {
-    const ticketId = `TICKET-${Date.now().toString().slice(-6)}`;
+    try {
+      const ticketsFilePath = path.join(process.cwd(), 'data', 'tickets.json');
 
-    // Simulación de creación de ticket
-    console.log(
-      `Creando ticket ${ticketId}: "${title}" con prioridad ${priority}`,
-    );
+      let ticketsData: TicketsData = { tickets: [], lastId: 0 };
+      if (fs.existsSync(ticketsFilePath)) {
+        const fileContent = fs.readFileSync(ticketsFilePath, 'utf8');
+        ticketsData = JSON.parse(fileContent) as TicketsData;
+      }
 
-    // En una implementación real, esto se guardaría en una base de datos
-    const ticket = {
-      ticketId,
-      title,
-      description,
-      priority,
-      status: 'abierto',
-      createdAt: new Date().toISOString(),
-    };
+      const newId = ticketsData.lastId + 1;
+      const ticketId = `TK-${newId.toString().padStart(3, '0')}`;
 
-    return {
-      success: true,
-      ticket,
-      message: `Ticket ${ticketId} creado correctamente. Un técnico se pondrá en contacto pronto.`,
-    };
+      const newTicket = {
+        id: ticketId,
+        title,
+        description,
+        status: 'open',
+        createdAt: new Date().toISOString(),
+        userId: conversationId,
+        priority,
+      };
+      ticketsData.tickets.push(newTicket as never);
+      ticketsData.lastId = newId;
+
+      fs.writeFileSync(
+        ticketsFilePath,
+        JSON.stringify(ticketsData, null, 2),
+        'utf8',
+      );
+      return {
+        success: true,
+        ticket: {
+          ticketId,
+          ...newTicket,
+        },
+        message: `Ticket ${ticketId} creado correctamente. Un técnico se pondrá en contacto pronto.`,
+      };
+    } catch (error) {
+      console.error('Error al crear ticket:', error);
+      return {
+        success: false,
+        error: 'No se pudo crear el ticket',
+        details: error instanceof Error ? error.message : 'Error desconocido',
+      };
+    }
   }
 
   private checkServiceStatus(service: string = 'all'): ToolResult {
-    // Simulación de estado de servicios
     const statuses: ServiceStatuses = {
       cloud: { status: 'operativo', lastUpdated: new Date().toISOString() },
       autenticación: {

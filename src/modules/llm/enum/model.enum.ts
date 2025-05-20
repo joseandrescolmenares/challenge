@@ -14,6 +14,7 @@ export enum OpenAIModel {
   GPT3_5_TURBO = 'gpt-3.5-turbo',
   GPT4_1 = 'gpt-4.1-2025-04-14',
   GPTO3_MINI = 'o3-mini-2025-01-31',
+  GPT4_1_NANO = 'gpt-4.1-nano-2025-04-14',
 }
 
 export enum AnthropicModel {

@@ -2,10 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { DocumentLoaderService } from '../services/document-loader.service';
 import { Query } from '@nestjs/common';
 import { VectorStoreService } from '../services/vector-store.service';
-import {
-  QueryResult,
-  VectorStoreDataResult,
-} from '../interfaces/embedding.interfaces';
+import { QueryResult } from '../interfaces/embedding.interfaces';
 
 @Controller('embeddings')
 export class EmbeddingsController {
@@ -13,11 +10,6 @@ export class EmbeddingsController {
     private readonly documentLoaderService: DocumentLoaderService,
     private readonly vectorStoreService: VectorStoreService,
   ) {}
-
-  @Get('data')
-  async getVectorStoreData(): Promise<VectorStoreDataResult> {
-    return await this.documentLoaderService.getVectorStoreData();
-  }
 
   @Get('query')
   async queryDocuments(@Query('query') query: string): Promise<QueryResult> {

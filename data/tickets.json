@@ -49,7 +49,16 @@
       "userId": "user567",
       "assignedTo": "tech_support_3",
       "priority": "medium"
+    },
+    {
+      "id": "TK-006",
+      "title": "5",
+      "description": "Problemas de instalación del SmartHome",
+      "status": "open",
+      "createdAt": "2025-05-20T06:39:09.936Z",
+      "userId": "medium",
+      "priority": "El usuario ha reportado dificultades con la instalación del dispositivo, indicando un problema persistente que requiere intervención especializada."
     }
   ],
-  "lastId": 5
-} 
+  "lastId": 6
+}

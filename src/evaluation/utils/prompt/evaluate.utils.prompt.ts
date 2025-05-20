@@ -136,7 +136,7 @@ ${query}
 ${results
   .map(
     (r, i) => `  <result id="r${i}">
-    <snippet>${r.pageContent.substring(0, 300)}${r.pageContent.length > 300 ? '...' : ''}</snippet>
+    <snippet>${r.pageContent}</snippet>
   </result>`,
   )
   .join('\n')}

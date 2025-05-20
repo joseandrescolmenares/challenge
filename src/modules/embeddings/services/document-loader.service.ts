@@ -4,10 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { MarkdownTextSplitter } from 'langchain/text_splitter';
 import { Document } from 'langchain/document';
-import {
-  DocMetadata,
-  VectorStoreDataResult,
-} from '../interfaces/embedding.interfaces';
+import { DocMetadata } from '../interfaces/embedding.interfaces';
 
 @Injectable()
 export class DocumentLoaderService {
@@ -87,47 +84,6 @@ export class DocumentLoaderService {
       } catch (error) {
         console.error(`Error procesando documento ${file}:`, error);
       }
-    }
-  }
-
-  async getVectorStoreData(): Promise<VectorStoreDataResult> {
-    try {
-      const data = await this.vectorStoreService.getAllDocuments();
-
-      if (!data || !data.ids) {
-        return {
-          success: false,
-          totalChunks: 0,
-          fileName: 'document-loader',
-          message: 'No se pudieron obtener datos del vector store',
-          error: 'No se pudieron obtener datos del vector store',
-        };
-      }
-
-      const documents = Array.isArray(data.documents) ? data.documents : [];
-      const metadatas = Array.isArray(data.metadatas)
-        ? (data.metadatas.map((m) => m || {}) as Record<string, any>[])
-        : [];
-
-      return {
-        success: true,
-        totalChunks: documents.length,
-        fileName: 'document-loader',
-        message: 'Documentos cargados correctamente',
-        data: {
-          documents: documents,
-          metadatas: metadatas,
-        },
-      };
-    } catch (error: any) {
-      console.error('Error obteniendo datos del vector store:', error);
-      return {
-        success: false,
-        totalChunks: 0,
-        fileName: 'document-loader',
-        message: 'Error al obtener datos',
-        error: (error as Error)?.message || 'Error desconocido',
-      };
     }
   }
 }

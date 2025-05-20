@@ -15,6 +15,9 @@ import {
   CompletionResponse,
 } from '../interfaces/agent.interfaces';
 import { agentValidationPrompt } from '../utils/prompts/agentValidation.prompt';
+import { TicketsData } from 'src/modules/tools/interfaces/tool.interfaces';
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class ChatService {
@@ -51,7 +54,10 @@ export class ChatService {
       !state.ticketSuggested
     ) {
       const ticketAnalysis: TicketAnalysisResponse =
-        await this.shouldSuggestTicketCreation(state.userMessages);
+        await this.shouldSuggestTicketCreation(
+          state.userMessages,
+          conversationId,
+        );
 
       if (ticketAnalysis.needsTicket && ticketAnalysis.ticketMessage) {
         state.ticketSuggested = true;
@@ -162,7 +168,14 @@ export class ChatService {
 
   private async shouldSuggestTicketCreation(
     messages: string[],
+    conversationId: string,
   ): Promise<TicketAnalysisResponse> {
+    const ticketsFilePath = path.join(process.cwd(), 'data', 'tickets.json');
+
+    fs.existsSync(ticketsFilePath);
+    const fileContent = fs.readFileSync(ticketsFilePath, 'utf8');
+    const ticketsData = JSON.parse(fileContent) as TicketsData;
+
     const lastMessages = messages.slice(-this.USER_MESSAGES_TO_ANALYZE);
 
     const messagesFormatted = lastMessages
@@ -172,15 +185,15 @@ export class ChatService {
     const promptMessages: ChatCompletionMessageParam[] = [
       {
         role: AIRole.SYSTEM,
-        content: agentValidationPrompt(messages).system,
+        content: agentValidationPrompt(
+          messages,
+          messagesFormatted,
+          ticketsData.tickets,
+        ).system,
       },
       {
         role: AIRole.USER,
-        content: agentValidationPrompt(
-          messages,
-          this.USER_MESSAGES_TO_ANALYZE,
-          messagesFormatted,
-        ).user,
+        content: agentValidationPrompt(messages, messagesFormatted).user,
       },
     ];
 
@@ -202,11 +215,26 @@ export class ChatService {
         const validatedResponse =
           llmResponse as unknown as ValidatedTicketResponse;
 
+        if (!validatedResponse.isTicket && validatedResponse.existingTicket) {
+          const existingTicket = validatedResponse.existingTicket;
+          const status = existingTicket.status || 'pending';
+          const ticketId = existingTicket.id || existingTicket.ticketId;
+
+          const existingTicketMessage = `He identificado que su problema es similar a uno ya reportado en nuestro sistema. El estado actual es: ${status.toUpperCase()}. Nuestro equipo técnico está trabajando en una solución.`;
+
+          return {
+            needsTicket: true,
+            ticketMessage: existingTicketMessage,
+            existingTicketId: String(ticketId),
+          };
+        }
+
         if (validatedResponse.isTicket) {
           const result = this.toolsExecutorService.createSupportTicket(
-            validatedResponse.title,
-            validatedResponse.description,
-            validatedResponse.priority,
+            validatedResponse.title || '',
+            validatedResponse.description || '',
+            validatedResponse.priority || '',
+            conversationId,
           ) as TicketResult;
 
           const ticketId =
@@ -227,7 +255,7 @@ export class ChatService {
 
       return { needsTicket: false };
     } catch (error) {
-      console.error('Error al analizar mensajes para ticket:', error);
+      console.error('Error analyzing messages for ticket:', error);
       return { needsTicket: false };
     }
   }
