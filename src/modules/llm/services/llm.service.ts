@@ -47,6 +47,7 @@ export class LLMService {
       messages,
       temperature: 0.1,
       max_tokens: 1000,
+      store: true,
     };
 
     if (tools && tools.length > 0) {
@@ -55,8 +56,6 @@ export class LLMService {
     }
 
     try {
-      console.log('Requesting completion from OpenAI...');
-
       if (schema) {
         try {
           const parsed = await this.openai.beta.chat.completions.parse({
@@ -64,6 +63,7 @@ export class LLMService {
             messages,
             max_tokens: 1000,
             response_format: zodResponseFormat(schema, 'response'),
+            store: true,
           });
 
           if (parsed.choices[0].finish_reason === 'length') {
