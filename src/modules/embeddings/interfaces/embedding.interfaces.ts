@@ -87,3 +87,22 @@ export interface EvaluationResult {
   }[];
   timestamp: string;
 }
+
+export interface DocMetadata {
+  documentType: string;
+  fileName: string;
+  source: string;
+  loc?: {
+    index?: number;
+    [key: string]: any;
+  };
+}
+export interface VectorStoreDataResult {
+  success: boolean;
+  data?: {
+    documents: (string | null)[];
+    metadatas: Record<string, any>[];
+  };
+  error?: string;
+  details?: string;
+}

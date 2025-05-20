@@ -6,7 +6,6 @@ import { Chroma } from '@langchain/community/vectorstores/chroma';
 import { OpenAIEmbeddings } from '@langchain/openai';
 import { QueryResult } from '../interfaces/embedding.interfaces';
 
-// Definir tipo para el resultado de addDocuments
 type AddDocumentsResult =
   | { success: boolean; error?: string; response?: Record<string, unknown> }
   | AddDocumentsResult[];

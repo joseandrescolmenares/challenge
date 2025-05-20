@@ -4,26 +4,10 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { MarkdownTextSplitter } from 'langchain/text_splitter';
 import { Document } from 'langchain/document';
-
-interface DocMetadata {
-  documentType: string;
-  fileName: string;
-  source: string;
-  loc?: {
-    index?: number;
-    [key: string]: any;
-  };
-  [key: string]: any;
-}
-export interface VectorStoreDataResult {
-  success: boolean;
-  data?: {
-    documents: (string | null)[];
-    metadatas: Record<string, any>[];
-  };
-  error?: string;
-  details?: string;
-}
+import {
+  DocMetadata,
+  VectorStoreDataResult,
+} from '../interfaces/embedding.interfaces';
 
 @Injectable()
 export class DocumentLoaderService {
@@ -45,7 +29,6 @@ export class DocumentLoaderService {
 
   async loadDocuments() {
     if (!fs.existsSync(this.DOCS_PATH)) {
-      console.warn(`El directorio de documentos ${this.DOCS_PATH} no existe`);
       return;
     }
 
@@ -54,7 +37,6 @@ export class DocumentLoaderService {
       .filter((file) => file.endsWith('.md'));
 
     if (files.length === 0) {
-      console.warn('No se encontraron archivos Markdown en el directorio');
       return;
     }
 
@@ -62,8 +44,6 @@ export class DocumentLoaderService {
       const filePath = path.join(this.DOCS_PATH, file);
       const content = fs.readFileSync(filePath, 'utf8');
       const documentType = path.basename(file, '.md');
-
-      console.log(`Procesando documento ${documentType}`);
 
       try {
         const document = new Document({
@@ -117,6 +97,9 @@ export class DocumentLoaderService {
       if (!data || !data.ids) {
         return {
           success: false,
+          totalChunks: 0,
+          fileName: 'document-loader',
+          message: 'No se pudieron obtener datos del vector store',
           error: 'No se pudieron obtener datos del vector store',
         };
       }
@@ -128,6 +111,9 @@ export class DocumentLoaderService {
 
       return {
         success: true,
+        totalChunks: documents.length,
+        fileName: 'document-loader',
+        message: 'Documentos cargados correctamente',
         data: {
           documents: documents,
           metadatas: metadatas,
@@ -137,8 +123,10 @@ export class DocumentLoaderService {
       console.error('Error obteniendo datos del vector store:', error);
       return {
         success: false,
-        error: 'Error al obtener datos',
-        details: (error as Error)?.message || 'Error desconocido',
+        totalChunks: 0,
+        fileName: 'document-loader',
+        message: 'Error al obtener datos',
+        error: (error as Error)?.message || 'Error desconocido',
       };
     }
   }

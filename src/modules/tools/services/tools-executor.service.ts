@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { VectorStoreService } from '../../embeddings/services/vector-store.service';
 import {
   CheckStatusArgs,
-  CreateTicketArgs,
   ServiceStatuses,
   ToolCall,
   ToolResult,
@@ -19,15 +18,6 @@ export class ToolsExecutorService {
         typeof args === 'string' ? JSON.parse(args) : args;
 
       switch (name) {
-        case 'createTicket': {
-          const typedArgs = parsedArgs as CreateTicketArgs;
-          return this.createSupportTicket(
-            typedArgs.title,
-            typedArgs.description,
-            typedArgs.priority,
-            typedArgs.contactEmail,
-          );
-        }
         case 'checkStatus': {
           const typedArgs = parsedArgs as CheckStatusArgs;
           return this.checkServiceStatus(typedArgs.service);
@@ -55,11 +45,10 @@ export class ToolsExecutorService {
       .join(' ');
   }
 
-  private createSupportTicket(
+  public createSupportTicket(
     title: string,
     description: string,
     priority: string = 'media',
-    contactEmail?: string,
   ): ToolResult {
     const ticketId = `TICKET-${Date.now().toString().slice(-6)}`;
 
@@ -74,7 +63,6 @@ export class ToolsExecutorService {
       title,
       description,
       priority,
-      contactEmail,
       status: 'abierto',
       createdAt: new Date().toISOString(),
     };

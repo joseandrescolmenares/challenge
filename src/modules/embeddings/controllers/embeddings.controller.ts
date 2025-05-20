@@ -1,11 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
-import {
-  DocumentLoaderService,
-  VectorStoreDataResult,
-} from '../services/document-loader.service';
+import { DocumentLoaderService } from '../services/document-loader.service';
 import { Query } from '@nestjs/common';
 import { VectorStoreService } from '../services/vector-store.service';
-import { QueryResult } from '../interfaces/embedding.interfaces';
+import {
+  QueryResult,
+  VectorStoreDataResult,
+} from '../interfaces/embedding.interfaces';
 
 @Controller('embeddings')
 export class EmbeddingsController {
