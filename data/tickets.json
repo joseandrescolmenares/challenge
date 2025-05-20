@@ -58,7 +58,16 @@
       "createdAt": "2025-05-20T06:39:09.936Z",
       "userId": "medium",
       "priority": "El usuario ha reportado dificultades con la instalación del dispositivo, indicando un problema persistente que requiere intervención especializada."
+    },
+    {
+      "id": "TK-007",
+      "title": "Problema de instalación del dispositivo SmartHome",
+      "description": "El usuario no puede completar la instalación del dispositivo, reportando múltiples veces que no le deja instalarlo.",
+      "status": "open",
+      "createdAt": "2025-05-20T08:05:51.885Z",
+      "userId": "5",
+      "priority": "high"
     }
   ],
-  "lastId": 6
+  "lastId": 7
 }

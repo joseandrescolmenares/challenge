@@ -1,5 +1,12 @@
 import { Ticket } from 'src/modules/tools/interfaces/tool.interfaces';
 
+/**
+ * Generates the prompt for ticket validation
+ * @param messages - Array of user messages
+ * @param messagesFormatted - Formatted string of user messages for display
+ * @param existingTickets - Array of existing tickets to check against
+ * @returns System and user prompts
+ */
 export const agentValidationPrompt = (
   messages: string[],
   messagesFormatted: string,
@@ -37,6 +44,11 @@ You are an analyst specialized in technical support for the SmartHome Hub X1000.
    - A clear title summarizing the issue
    - A detailed description based on the user's messages
    - An appropriate priority level (high, medium, low)
+
+6. IMPORTANT: Detect the language of the user messages and respond in the SAME LANGUAGE.
+   - If the user writes in Spanish, analyze the content and create ticket details in Spanish
+   - If the user writes in English, analyze the content and create ticket details in English
+   - Always maintain the JSON format structure regardless of language
 
 # Existing Tickets
 ${existingTicketsInfo}

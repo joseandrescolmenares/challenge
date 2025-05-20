@@ -65,8 +65,12 @@ export interface ToolSchema {
   };
 }
 
+/**
+ * Interface for a support ticket
+ */
 export interface Ticket {
   id: string;
+  ticketId?: string; // Alternative ID field for compatibility
   title: string;
   description: string;
   status: string;
@@ -75,7 +79,10 @@ export interface Ticket {
   priority: string;
 }
 
+/**
+ * Interface for tickets data structure in JSON file
+ */
 export interface TicketsData {
-  tickets: Ticket[];
   lastId: number;
+  tickets: Ticket[];
 }
