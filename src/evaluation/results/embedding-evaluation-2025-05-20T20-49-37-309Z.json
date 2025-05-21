@@ -1,0 +1,252 @@
+[
+  {
+    "query": "¿Cómo configurar mi SmartHome Hub por primera vez?",
+    "results": [
+      {
+        "modelName": "OpenAI_Small",
+        "dimensions": 1536,
+        "evaluation": {
+          "score": 10,
+          "reasoning": "All three results are identical and provide clear, step-by-step instructions on how to configure the SmartHome Hub for the first time. The content directly addresses the query, offering details on downloading the app and activating the hub, which perfectly meets the query's intent. Since all chunks are identical, they all receive the same high relevance score.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 10,
+              "comments": "Directly answers the query with clear, detailed steps for the initial configuration of the SmartHome Hub."
+            },
+            {
+              "relevanceScore": 10,
+              "comments": "Identical to the first result, and provides the required configuration instructions."
+            },
+            {
+              "relevanceScore": 10,
+              "comments": "Identical to the first result, featuring step-by-step instructions that perfectly match the query."
+            }
+          ]
+        }
+      },
+      {
+        "modelName": "Cohere_Medium",
+        "dimensions": 768,
+        "evaluation": {
+          "score": 10,
+          "reasoning": "All three returned results are identical and they perfectly match the query. The content provides a clear, step-by-step guide to configure the SmartHome Hub for the first time, including the app download and device activation instructions. Since all chunks are identical, they all receive the same high relevance score.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 10,
+              "comments": "Directly answers the query with detailed configuration instructions for setting up the SmartHome Hub."
+            },
+            {
+              "relevanceScore": 10,
+              "comments": "Identical to the first result; therefore, it is equally relevant."
+            },
+            {
+              "relevanceScore": 10,
+              "comments": "Identical to the first result; therefore, it is equally relevant."
+            }
+          ]
+        }
+      }
+    ],
+    "timestamp": "2025-05-20T20:48:23.838Z"
+  },
+  {
+    "query": "¿Qué hago si mi dispositivo no se conecta?",
+    "results": [
+      {
+        "modelName": "OpenAI_Small",
+        "dimensions": 1536,
+        "evaluation": {
+          "score": 2,
+          "reasoning": "The search results do not address the specific query Intent of troubleshooting a device that is not connecting. The returned content discusses what happens when the internet connection fails, which is different from providing actionable steps for when a device does not connect. Additionally, all the returned results are identical, so they all receive the same low relevance score.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 2,
+              "comments": "The snippet explains the effects of an internet connection failure rather than providing troubleshooting steps for a device not connecting, making it only marginally relevant."
+            },
+            {
+              "relevanceScore": 2,
+              "comments": "Identical to the first result, hence receives the same low relevance score."
+            },
+            {
+              "relevanceScore": 2,
+              "comments": "Identical to the first result, hence receives the same low relevance score."
+            }
+          ]
+        }
+      },
+      {
+        "modelName": "Cohere_Medium",
+        "dimensions": 768,
+        "evaluation": {
+          "score": 10,
+          "reasoning": "All three results provide detailed troubleshooting instructions for connectivity issues related to a WiFi device, which directly addresses the query '¿Qué hago si mi dispositivo no se conecta?'. Since all the returned chunks are identical, the same high relevance score is assigned to each.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 10,
+              "comments": "Provides clear steps to troubleshoot connection issues, including verifying WiFi credentials and checking signal strength."
+            },
+            {
+              "relevanceScore": 10,
+              "comments": "Identical to the first result, offering the same relevant troubleshooting information."
+            },
+            {
+              "relevanceScore": 10,
+              "comments": "Identical to the first result, equally relevant with detailed troubleshooting steps."
+            }
+          ]
+        }
+      }
+    ],
+    "timestamp": "2025-05-20T20:48:32.597Z"
+  },
+  {
+    "query": "¿Cuáles son los requisitos de red para el Hub?",
+    "results": [
+      {
+        "modelName": "OpenAI_Small",
+        "dimensions": 1536,
+        "evaluation": {
+          "score": 8,
+          "reasoning": "All three results are identical and provide relevant information regarding the Hub's network requirements. The snippet explains that while the Hub operates locally without requiring a permanent internet connection for basic control, an internet connection is needed for firmware updates, remote control, and integration with cloud-based services. Although it does not list detailed technical network requirements (such as bandwidth or specific ports), it directly addresses the main aspects of connectivity relevant to the question.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 8,
+              "comments": "The result clearly explains the conditions under which an internet connection is needed, which is relevant to understanding the Hub's network requirements."
+            },
+            {
+              "relevanceScore": 8,
+              "comments": "Identical to the first result, providing the same pertinent connectivity information related to the Hub."
+            },
+            {
+              "relevanceScore": 8,
+              "comments": "Identical to the first result, accurately addressing the query with details on when an internet connection is necessary."
+            }
+          ]
+        }
+      },
+      {
+        "modelName": "Cohere_Medium",
+        "dimensions": 768,
+        "evaluation": {
+          "score": 8,
+          "reasoning": "All three results are identical and provide relevant information regarding the network connectivity requirements for the Hub. The snippet addresses whether the Hub requires a permanent internet connection and clarifies that while it operates locally, it will need internet access for firmware updates, remote control, and integration with cloud-based services. Although it doesn't delve into detailed technical network specifications, it directly addresses the query regarding connectivity requirements. Since all chunks are identical, they receive the same relevance score.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 8,
+              "comments": "Directly addresses connectivity requirements by explaining that the Hub does not need a permanent internet connection for basic operation but does require internet for additional features."
+            },
+            {
+              "relevanceScore": 8,
+              "comments": "Identical to the first result; provides the same relevant information regarding network and connectivity requirements."
+            },
+            {
+              "relevanceScore": 8,
+              "comments": "Identical to the first result; provides the same relevant information regarding network and connectivity requirements."
+            }
+          ]
+        }
+      }
+    ],
+    "timestamp": "2025-05-20T20:48:48.363Z"
+  },
+  {
+    "query": "Problemas de compatibilidad con dispositivos Z-Wave",
+    "results": [
+      {
+        "modelName": "OpenAI_Small",
+        "dimensions": 1536,
+        "evaluation": {
+          "score": 2,
+          "reasoning": "The query is about compatibility issues with Z-Wave devices, but all returned results provide troubleshooting information for ZigBee devices instead. Since ZigBee and Z-Wave are different protocols, the results don't address the user’s query. Additionally, all three snippets are identical, so they all receive the same low relevance score.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 2,
+              "comments": "This result provides troubleshooting steps for ZigBee issues, which is not relevant to Z-Wave compatibility problems."
+            },
+            {
+              "relevanceScore": 2,
+              "comments": "Identical to the first result, it addresses ZigBee rather than Z-Wave."
+            },
+            {
+              "relevanceScore": 2,
+              "comments": "Identical to the other results and irrelevant to the query about Z-Wave compatibility issues."
+            }
+          ]
+        }
+      },
+      {
+        "modelName": "Cohere_Medium",
+        "dimensions": 768,
+        "evaluation": {
+          "score": 6,
+          "reasoning": "All three results are identical and they address technical troubleshooting related to device detection issues such as range limitations, obstacles, and pairing mode. While these topics can be related to compatibility problems with Z-Wave devices (e.g., devices not connecting due to pairing issues), the content does not fully address broader compatibility concerns that might involve software versions, protocol mismatches, or integration issues. Given that the result partially addresses the query and all chunks are identical, the same moderate relevance score is assigned to each result.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 6,
+              "comments": "Provides troubleshooting steps related to detection issues (distance, obstacles, and pairing mode) which can be indirectly related to compatibility problems but does not fully cover the broader topic of compatibility."
+            },
+            {
+              "relevanceScore": 6,
+              "comments": "Identical to the first result, hence the same moderate relevance score applies."
+            },
+            {
+              "relevanceScore": 6,
+              "comments": "Identical to the first result, hence the same moderate relevance score applies."
+            }
+          ]
+        }
+      }
+    ],
+    "timestamp": "2025-05-20T20:49:05.643Z"
+  },
+  {
+    "query": "¿Cómo actualizar el firmware?",
+    "results": [
+      {
+        "modelName": "OpenAI_Small",
+        "dimensions": 1536,
+        "evaluation": {
+          "score": 3,
+          "reasoning": "The query asks '¿Cómo actualizar el firmware?' (How to update the firmware?), but all returned results focus on scheduling or delaying firmware updates rather than providing a general procedure for updating the firmware. Although the results mention firmware updates, they do not directly answer the user's question on how to perform an update. Additionally, since all results are identical, they all receive the same relevance score.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 3,
+              "comments": "Mentions scheduling or delaying firmware updates, which is indirectly related but does not provide a true answer to how to update the firmware."
+            },
+            {
+              "relevanceScore": 3,
+              "comments": "Same as the first result; does not address the process of updating the firmware directly."
+            },
+            {
+              "relevanceScore": 3,
+              "comments": "Identical to the others and similarly off-target with respect to the query."
+            }
+          ]
+        }
+      },
+      {
+        "modelName": "Cohere_Medium",
+        "dimensions": 768,
+        "evaluation": {
+          "score": 2,
+          "reasoning": "The query asks for instructions on how to update firmware (\"¿Cómo actualizar el firmware?\"), but the returned results only discuss the frequency of software updates. Although the snippet mentions firmware updates, it does not provide any actual steps or guidance on how to perform the update. Additionally, all returned results are identical; therefore, the same low relevance score is applied to each.",
+          "relevanceAnalysis": [
+            {
+              "relevanceScore": 2,
+              "comments": "Mentions firmware updates but focuses solely on the frequency of updates rather than the process of updating firmware."
+            },
+            {
+              "relevanceScore": 2,
+              "comments": "Identical to the first result, hence equally irrelevant for the specific query."
+            },
+            {
+              "relevanceScore": 2,
+              "comments": "Identical to the first result, providing no procedural guidance as requested."
+            }
+          ]
+        }
+      }
+    ],
+    "timestamp": "2025-05-20T20:49:23.196Z"
+  }
+]

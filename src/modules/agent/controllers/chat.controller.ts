@@ -1,5 +1,5 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { ChatService } from '../services/proccesMessage.service';
+import { ChatService } from '../services/processMessage.service';
 import { ChatRequestDto } from '../dto/chat-request.dto';
 import { v4 as uuid } from 'uuid';
 

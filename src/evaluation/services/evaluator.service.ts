@@ -3,7 +3,7 @@ import { EvaluationResponse, evaluationResponseSchema } from '../schema';
 import { Document as LangchainDocument } from '@langchain/core/documents';
 import { evaluatePrompt } from '../utils/prompt/evaluate.utils.prompt';
 import { AIRole } from '../../modules/llm/enum/roles.enum';
-import { OpenAIModel } from 'src/modules/llm/enum/model.enum';
+import { OpenAIModel } from '../../modules/llm/enum/model.enum';
 export class EvaluatorService {
   private llmService: LLMService;
 
@@ -30,16 +30,16 @@ export class EvaluatorService {
     );
 
     try {
-      const rawResponse = await this.llmService.getCompletion(
-        [
+      const rawResponse = await this.llmService.getCompletion({
+        messages: [
           { role: AIRole.SYSTEM, content: systemPrompt },
           { role: AIRole.USER, content: userPrompt },
         ],
-        null,
-        'auto',
-        evaluationResponseSchema,
-        OpenAIModel.GPTO3_MINI,
-      );
+        tools: null,
+        toolChoice: 'auto',
+        schema: evaluationResponseSchema,
+        model: OpenAIModel.GPTO3_MINI,
+      });
 
       let evaluation: EvaluationResponse;
 

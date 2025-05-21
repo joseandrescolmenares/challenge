@@ -35,18 +35,26 @@ export class LLMService {
    * @param schema Esquema zod para validación
    * @returns Respuesta del modelo
    */
-  async getCompletion<T = any>(
-    messages: ChatCompletionMessageParam[],
-    tools: ChatCompletionTool[] | null = null,
-    toolChoice: ChatCompletionToolChoiceOption = 'auto',
-    schema: z.ZodSchema<T> | null = null,
-    model: OpenAIModel = this.defaultModel,
-  ) {
+  async getCompletion<T = any>({
+    messages,
+    tools,
+    toolChoice,
+    schema,
+    model = this.defaultModel,
+    maxTokens,
+  }: {
+    messages: ChatCompletionMessageParam[];
+    tools?: ChatCompletionTool[] | null;
+    toolChoice?: ChatCompletionToolChoiceOption;
+    schema?: z.ZodSchema<T> | null;
+    model?: OpenAIModel;
+    maxTokens?: number | null;
+  }) {
     const params: ChatCompletionCreateParamsNonStreaming = {
       model: model || this.defaultModel,
       messages,
       temperature: 0.1,
-      max_tokens: 1000,
+      max_tokens: maxTokens || 1000,
       store: true,
     };
 
@@ -61,7 +69,7 @@ export class LLMService {
           const parsed = await this.openai.beta.chat.completions.parse({
             model: model || this.defaultModel,
             messages,
-            max_tokens: 1000,
+            ...(maxTokens ? { max_tokens: maxTokens } : {}),
             response_format: zodResponseFormat(schema, 'response'),
             store: true,
           });

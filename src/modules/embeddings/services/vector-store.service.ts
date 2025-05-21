@@ -54,6 +54,7 @@ export class VectorStoreService implements OnModuleInit {
     metadatas?: Record<string, unknown>[],
   ): Promise<AddDocumentsResult> {
     try {
+      console.log('Añadiendo testttttt', documents);
       const langchainDocs = documents.map((text, i) => {
         return new LangchainDocument({
           pageContent: text,

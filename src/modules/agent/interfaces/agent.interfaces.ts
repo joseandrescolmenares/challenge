@@ -1,30 +1,17 @@
-/**
- * Interface definitions for the agent module
- */
 import { ChatCompletionMessageParam } from 'openai/resources/chat';
 
-/**
- * Represents the current state of a conversation
- */
 export interface ConversationState {
   history: ChatCompletionMessageParam[];
   userMessages: string[];
   attemptCount: number;
   ticketSuggested: boolean;
 }
-
-/**
- * Response format for ticket creation analysis
- */
 export interface TicketAnalysisResponse {
   needsTicket: boolean;
   ticketMessage?: string;
   existingTicketId?: string;
 }
 
-/**
- * Structure of a ticket returned from the validation process
- */
 export interface ValidatedTicketResponse {
   isTicket: boolean;
   title?: string;
@@ -38,9 +25,6 @@ export interface ValidatedTicketResponse {
   };
 }
 
-/**
- * Result from creating a support ticket
- */
 export interface TicketResult {
   success: boolean;
   message: string;
@@ -50,9 +34,6 @@ export interface TicketResult {
   };
 }
 
-/**
- * OpenAI API response format for completions
- */
 export interface CompletionResponse {
   id: string;
   choices: Array<{
@@ -72,9 +53,6 @@ export interface CompletionResponse {
   }>;
 }
 
-/**
- * Format for query results from vector store
- */
 export interface QueryResult {
   ids: string[];
   documents: string[];

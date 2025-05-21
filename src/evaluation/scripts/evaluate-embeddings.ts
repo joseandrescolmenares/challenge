@@ -7,10 +7,7 @@
 
 import * as path from 'path';
 import { DocumentProcessorService } from '../services/document-processor.service';
-// import {
-//   EmbeddingService,
-//   EmbeddingModel,
-// } from '../services/embedding.service';
+
 import { EvaluatorService } from '../services/evaluator.service';
 import { ReportService } from '../services/report.service';
 import { EvaluationResponse } from '../schema';

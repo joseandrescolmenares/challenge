@@ -19,6 +19,7 @@ import { TicketsData } from 'src/modules/tools/interfaces/tool.interfaces';
 import * as fs from 'fs';
 import * as path from 'path';
 import { ChatCompletionMessageToolCall } from 'openai/resources/chat';
+import { OpenAIModel } from 'src/modules/llm/enum/model.enum';
 @Injectable()
 export class ChatService {
   private conversationStates: Map<string, ConversationState> = new Map();
@@ -44,7 +45,6 @@ export class ChatService {
   ): Promise<{ message: string; history: ChatCompletionMessageParam[] }> {
     const state = this.getOrCreateConversationState(conversationId);
     const history = state.history;
-
     const documentation = await this.vectorStoreService.queryDocuments(message);
 
     if (history.length === 0) {
@@ -89,11 +89,13 @@ export class ChatService {
     history.push({ role: AIRole.USER, content: message });
 
     try {
-      // Get initial response from LLM
-      const response = (await this.llmService.getCompletion(
-        history,
-        this.toolsRegistryService.getAllTools(),
-      )) as CompletionResponse;
+      const response = (await this.llmService.getCompletion({
+        messages: history,
+        tools: this.toolsRegistryService.getAllTools(),
+        toolChoice: 'auto',
+        schema: null,
+        maxTokens: null,
+      })) as CompletionResponse;
 
       const assistantMessage = response.choices[0].message;
 
@@ -113,7 +115,6 @@ export class ChatService {
           history: history,
         };
       } else {
-        // Add the assistant message with tool calls to history
         history.push({
           role: AIRole.ASSISTANT,
           content: assistantMessage.content || null,
@@ -151,10 +152,11 @@ export class ChatService {
         }
       }
 
-      const finalResponse = (await this.llmService.getCompletion(
-        history,
-        null,
-      )) as CompletionResponse;
+      const finalResponse = (await this.llmService.getCompletion({
+        messages: history,
+        tools: null,
+        toolChoice: 'auto',
+      })) as CompletionResponse;
 
       const finalMessage = finalResponse.choices[0].message;
       const finalContent =
@@ -237,13 +239,11 @@ export class ChatService {
     let ticketsData: TicketsData = { lastId: 0, tickets: [] };
 
     try {
-      // Check if the tickets file exists and read it
       if (fs.existsSync(ticketsFilePath)) {
         const fileContent = fs.readFileSync(ticketsFilePath, 'utf8');
         ticketsData = JSON.parse(fileContent) as TicketsData;
       }
 
-      // Get the last few messages for analysis
       const lastMessages = messages.slice(-this.USER_MESSAGES_TO_ANALYZE);
       const messagesFormatted = lastMessages
         .map((msg, i) => `Message ${i + 1}: "${msg}"`)
@@ -264,12 +264,14 @@ export class ChatService {
         },
       ];
 
-      const llmResponse = await this.llmService.getCompletion(
-        promptMessages,
-        null,
-        'auto',
-        ValidationsContext,
-      );
+      const llmResponse = await this.llmService.getCompletion({
+        messages: promptMessages,
+        tools: null,
+        toolChoice: 'auto',
+        schema: ValidationsContext,
+        model: OpenAIModel.GPT4_1_NANO,
+        maxTokens: null,
+      });
 
       if (typeof llmResponse === 'object' && llmResponse !== null) {
         const validatedResponse =

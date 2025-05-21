@@ -78,3 +78,12 @@ export interface VectorStoreDataResult {
   error?: string;
   details?: string;
 }
+
+export interface DocumentProcessingConfig {
+  chunkSize: number;
+  chunkOverlap: number;
+  batchSize: number;
+  delayBetweenBatches: number;
+  maxRetries: number;
+  modelName: string;
+}

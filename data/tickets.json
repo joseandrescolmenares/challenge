@@ -67,7 +67,133 @@
       "createdAt": "2025-05-20T08:05:51.885Z",
       "userId": "5",
       "priority": "high"
+    },
+    {
+      "id": "TK-008",
+      "title": "Problema de instalación del dispositivo SmartHome",
+      "description": "El usuario no puede completar la instalación del dispositivo, reportando múltiples veces que no le deja instalarlo.",
+      "status": "open",
+      "createdAt": "2025-05-20T09:59:01.268Z",
+      "userId": "6",
+      "priority": "high"
+    },
+    {
+      "id": "TK-009",
+      "title": "Problema de instalación del dispositivo SmartHome",
+      "description": "El usuario no puede completar la instalación del dispositivo, reportando múltiples veces que no le deja instalarlo.",
+      "status": "open",
+      "createdAt": "2025-05-20T10:04:05.518Z",
+      "userId": "7",
+      "priority": "high"
+    },
+    {
+      "id": "TK-010",
+      "title": "Problema de instalación del dispositivo SmartHome",
+      "description": "El usuario no puede completar la instalación del dispositivo, reportando repetidamente que no le deja instalarlo.",
+      "status": "open",
+      "createdAt": "2025-05-20T10:19:46.521Z",
+      "userId": "8",
+      "priority": "high"
+    },
+    {
+      "id": "TK-011",
+      "title": "Problema de instalación del dispositivo SmartHome",
+      "description": "El usuario reporta que no puede completar la instalación del dispositivo y repite esta dificultad en varias ocasiones.",
+      "status": "open",
+      "createdAt": "2025-05-20T10:23:34.604Z",
+      "userId": "10",
+      "priority": "high"
+    },
+    {
+      "id": "TK-012",
+      "title": "Problema de instalación del dispositivo SmartHome",
+      "description": "El usuario no puede completar la instalación del dispositivo, reportando repetidamente que no le deja instalarlo.",
+      "status": "open",
+      "createdAt": "2025-05-20T10:30:19.463Z",
+      "userId": "11",
+      "priority": "high"
+    },
+    {
+      "id": "TK-013",
+      "title": "Problema de instalación del dispositivo SmartHome",
+      "description": "El usuario no puede completar la instalación del dispositivo reportando repetidamente que no le deja instalarlo.",
+      "status": "open",
+      "createdAt": "2025-05-20T10:39:44.141Z",
+      "userId": "12",
+      "priority": "medium"
+    },
+    {
+      "id": "TK-014",
+      "title": "Problema de instalación del dispositivo SmartHome",
+      "description": "El usuario reporta que no puede completar la instalación del dispositivo y repite esta dificultad en varias ocasiones.",
+      "status": "open",
+      "createdAt": "2025-05-20T10:51:07.291Z",
+      "userId": "13",
+      "priority": "high"
+    },
+    {
+      "id": "TK-015",
+      "title": "Problema de instalación del dispositivo SmartHome",
+      "description": "El usuario no puede completar la instalación del dispositivo, reportando repetidamente que no le deja instalarlo.",
+      "status": "open",
+      "createdAt": "2025-05-20T11:05:11.669Z",
+      "userId": "15",
+      "priority": "high"
+    },
+    {
+      "id": "TK-016",
+      "title": "Problema de instalación del dispositivo SmartHome",
+      "description": "El usuario reporta que no puede completar la instalación del dispositivo y recibe un error en la pantalla repetidamente.",
+      "status": "open",
+      "createdAt": "2025-05-20T11:18:48.835Z",
+      "userId": "17",
+      "priority": "high"
+    },
+    {
+      "id": "TK-017",
+      "title": "Problema no especificado en la solución del usuario",
+      "description": "El usuario reporta que tiene un problema que no puede solucionar, pero no proporciona detalles específicos sobre el problema.",
+      "status": "open",
+      "createdAt": "2025-05-20T11:26:46.925Z",
+      "userId": "17",
+      "priority": "medium"
+    },
+    {
+      "id": "TK-018",
+      "title": "Problema no especificado en la solución del usuario",
+      "description": "El usuario reporta que tiene un problema que no puede solucionar, pero no proporciona detalles específicos sobre el problema.",
+      "status": "open",
+      "createdAt": "2025-05-20T11:29:24.318Z",
+      "userId": "17",
+      "priority": "medium"
+    },
+    {
+      "id": "TK-019",
+      "title": "Problema reportado de manera reiterada",
+      "description": "El usuario repite que tiene el mismo problema varias veces, pero no especifica detalles adicionales.",
+      "status": "open",
+      "createdAt": "2025-05-20T11:52:29.841Z",
+      "userId": "18",
+      "priority": "medium"
+    },
+    {
+      "id": "TK-020",
+      "title": "Problema de instalación del dispositivo SmartHome",
+      "description": "El usuario reporta que tiene un error al intentar instalar el dispositivo, repitiendo el problema varias veces.",
+      "status": "open",
+      "createdAt": "2025-05-20T18:26:58.573Z",
+      "userId": "21",
+      "priority": "high"
+    },
+    {
+      "id": "TK-021",
+      "title": "Problema de instalación del dispositivo SmartHome",
+      "description": "El usuario reporta un error durante la instalación del dispositivo y busca ayuda con el proceso de configuración.",
+      "status": "open",
+      "createdAt": "2025-05-20T19:42:08.929Z",
+      "userId": "23",
+      "priority": "high"
     }
   ],
-  "lastId": 7
+  "lastId": 21
 }

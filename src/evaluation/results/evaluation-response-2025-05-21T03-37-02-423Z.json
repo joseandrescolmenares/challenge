@@ -1,0 +1,189 @@
+{
+  "generatedAt": "2025-05-21T03:37:02.423Z",
+  "models": [
+    {
+      "name": "GPT-4o-mini",
+      "modelName": "gpt-4o-mini",
+      "provider": "OpenAI",
+      "description": "Modelo más reciente de OpenAI, versión mini"
+    },
+    {
+      "name": "GPT-4-Nano",
+      "modelName": "gpt-4.1-nano-2025-04-14",
+      "provider": "OpenAI",
+      "description": "Modelo económico de OpenAI, versión nano"
+    }
+  ],
+  "results": [
+    {
+      "query": "¿Cómo configurar mi SmartHome Hub por primera vez?",
+      "results": [
+        {
+          "modelName": "GPT-4o-mini",
+          "modelInfo": {
+            "name": "GPT-4o-mini",
+            "modelName": "gpt-4o-mini",
+            "provider": "OpenAI",
+            "description": "Modelo más reciente de OpenAI, versión mini"
+          },
+          "response": "Para configurar tu SmartHome Hub X1000 por primera vez:\n\n1. Descarga la aplicación \"SmartHome Hub Control\" en App Store o Google Play.\n2. Instala la versión más reciente de la aplicación.\n3. Enciende el Hub presionando el botón de encendido en la parte posterior.\n4. Espera aproximadamente 45 segundos para que el dispositivo arranque completamente.\n5. Cuando el LED frontal parpadee en verde, el Hub estará listo para configurarse en la app.\n\nSource: http://localhost:8080/installation_guide.md",
+          "evaluation": {
+            "score": 0,
+            "explanation": "The user's input only contained a dot, which does not provide sufficient context or detail for me to generate a meaningful response. Please provide more information or ask a specific question so I can assist you effectively."
+          }
+        },
+        {
+          "modelName": "GPT-4-Nano",
+          "modelInfo": {
+            "name": "GPT-4-Nano",
+            "modelName": "gpt-4.1-nano-2025-04-14",
+            "provider": "OpenAI",
+            "description": "Modelo económico de OpenAI, versión nano"
+          },
+          "response": "Para configurar tu SmartHome Hub X1000 por primera vez:\n\n1. Descarga la aplicación \"SmartHome Hub Control\" en App Store o Google Play.\n2. Instala la versión más reciente de la aplicación.\n3. Enciende el Hub presionando el botón de encendido en la parte posterior.\n4. Espera aproximadamente 45 segundos para que el dispositivo arranque completamente.\n5. Cuando el LED frontal parpadee en verde, el Hub estará listo para configurarse.\n\nSource: http://localhost:8080/installation_guide.md",
+          "evaluation": {
+            "score": 10,
+            "explanation": "The user’s message consisted only of a period, which is ambiguous. I responded by acknowledging the input and inviting the user to clarify or provide more context about what they need help with."
+          }
+        }
+      ],
+      "timestamp": "2025-05-21T03:35:37.830Z"
+    },
+    {
+      "query": "¿Qué hago si mi dispositivo no se conecta?",
+      "results": [
+        {
+          "modelName": "GPT-4o-mini",
+          "modelInfo": {
+            "name": "GPT-4o-mini",
+            "modelName": "gpt-4o-mini",
+            "provider": "OpenAI",
+            "description": "Modelo más reciente de OpenAI, versión mini"
+          },
+          "response": "Si tu dispositivo no se conecta, te recomiendo seguir estos pasos:\n\n1. Verifica que tu red WiFi esté funcionando correctamente y que el dispositivo esté dentro del alcance del router.\n2. Reinicia el dispositivo y el router para refrescar la conexión.\n3. Asegúrate de que estás ingresando la contraseña correcta en la configuración.\n4. Si el problema persiste, revisa si hay problemas específicos por protocolo en la sección de \"Dispositivos no detectados\" en la guía de solución de problemas.\n\nEstoy aquí para ayudarte si necesitas más asistencia.\n\nSource: http://localhost:8080/troubleshooting_guide.md",
+          "evaluation": {
+            "score": 10,
+            "explanation": "The user’s input was just a punctuation character (a period), which does not provide enough context or information to generate a meaningful response. In this case, the assistant has acknowledged the input and asked for clarification or further details on how it can help."
+          }
+        },
+        {
+          "modelName": "GPT-4-Nano",
+          "modelInfo": {
+            "name": "GPT-4-Nano",
+            "modelName": "gpt-4.1-nano-2025-04-14",
+            "provider": "OpenAI",
+            "description": "Modelo económico de OpenAI, versión nano"
+          },
+          "response": "Si tu dispositivo no se conecta, te recomiendo seguir estos pasos:\n\n1. Verifica que tu red WiFi esté funcionando correctamente y que la señal sea fuerte.\n2. Asegúrate de que el dispositivo esté dentro del rango de tu router.\n3. Reinicia el dispositivo y el router para refrescar la conexión.\n4. Confirma que estás ingresando la contraseña correcta de la red WiFi.\n5. Si el problema persiste, revisa si hay alguna interferencia o congestión en la red.\n\nSi después de estos pasos el problema continúa, puedo ayudarte a resolverlo con más detalles.\n\nSource: http://localhost:8080/troubleshooting_guide.md",
+          "evaluation": {
+            "score": 1,
+            "explanation": "Your message only contained a period, which doesn't provide any specific context or question to respond to. Please feel free to provide more details or ask a clear question so I can assist you better."
+          }
+        }
+      ],
+      "timestamp": "2025-05-21T03:36:00.611Z"
+    },
+    {
+      "query": "¿Cuáles son los requisitos de red para el Hub?",
+      "results": [
+        {
+          "modelName": "GPT-4o-mini",
+          "modelInfo": {
+            "name": "GPT-4o-mini",
+            "modelName": "gpt-4o-mini",
+            "provider": "OpenAI",
+            "description": "Modelo más reciente de OpenAI, versión mini"
+          },
+          "response": "El Hub opera localmente y no requiere una conexión permanente a internet para controlar los dispositivos conectados. Sin embargo, sí necesita una conexión a internet para funciones como actualizaciones de firmware, control remoto fuera de casa, integración con servicios meteorológicos y asistentes de voz basados en la nube.\n\nSource: http://localhost:8080/faq.md",
+          "evaluation": {
+            "score": 1,
+            "explanation": "The user’s input consisted of a single period, which provides minimal context or information. As such, the response score is minimal since there is no clear query or additional content to address."
+          }
+        },
+        {
+          "modelName": "GPT-4-Nano",
+          "modelInfo": {
+            "name": "GPT-4-Nano",
+            "modelName": "gpt-4.1-nano-2025-04-14",
+            "provider": "OpenAI",
+            "description": "Modelo económico de OpenAI, versión nano"
+          },
+          "response": "El Hub opera localmente y no requiere una conexión permanente a internet para controlar los dispositivos conectados. Sin embargo, para funciones como actualizaciones de firmware, control remoto fuera de casa, integración con servicios meteorológicos y asistentes de voz en la nube, sí se necesita una conexión a internet.\n\nSource: http://localhost:8080/faq.md",
+          "evaluation": {
+            "score": 1,
+            "explanation": "The input consists solely of a period without any additional context. Could you please clarify your intent or provide more details so that I can better assist you?"
+          }
+        }
+      ],
+      "timestamp": "2025-05-21T03:36:13.960Z"
+    },
+    {
+      "query": "Problemas de compatibilidad con dispositivos Z-Wave",
+      "results": [
+        {
+          "modelName": "GPT-4o-mini",
+          "modelInfo": {
+            "name": "GPT-4o-mini",
+            "modelName": "gpt-4o-mini",
+            "provider": "OpenAI",
+            "description": "Modelo más reciente de OpenAI, versión mini"
+          },
+          "response": "Para solucionar problemas de compatibilidad con dispositivos Z-Wave, te recomiendo lo siguiente:\n\n1. Verifica que el dispositivo Z-Wave sea compatible con el Hub consultando la lista de dispositivos compatibles en la documentación o en la app.\n2. Asegúrate de que el dispositivo esté en modo de inclusión y cerca del Hub (menos de 5 metros).\n3. Realiza una inclusión limpia si el dispositivo ya fue incluido anteriormente.\n4. Mantén el firmware del Hub actualizado para garantizar compatibilidad con los dispositivos más recientes.\n5. Si el dispositivo no se detecta, intenta realizar una inclusión en un entorno con menos interferencias y sin otros dispositivos Z-Wave activos que puedan causar congestión en la red.\n\nPara optimizar la red Z-Wave y facilitar la detección, también es recomendable realizar una operación de \"reparar\" la red Z-Wave desde la app después de agregar nuevos dispositivos.\n\nSource: http://localhost:8080/troubleshooting_guide.md",
+          "evaluation": {
+            "score": 10,
+            "explanation": "The user provided a single period as the message, which doesn't indicate a clear question or request. In such cases, it's best to clarify and invite the user to provide more context or specify what assistance is needed."
+          }
+        },
+        {
+          "modelName": "GPT-4-Nano",
+          "modelInfo": {
+            "name": "GPT-4-Nano",
+            "modelName": "gpt-4.1-nano-2025-04-14",
+            "provider": "OpenAI",
+            "description": "Modelo económico de OpenAI, versión nano"
+          },
+          "response": "Para resolver problemas de compatibilidad con dispositivos Z-Wave, te recomiendo lo siguiente:\n\n1. Verifica que el dispositivo Z-Wave sea compatible con la versión de tu Hub.\n2. Asegúrate de que el dispositivo esté en modo de inclusión y cerca del Hub durante el proceso.\n3. Realiza una inclusión limpia eliminando cualquier dispositivo previo que pueda estar en conflicto.\n4. Mantén la red Z-Wave optimizada: evita colocar muchos dispositivos en un mismo canal y realiza inclusiones en diferentes momentos para mejorar la detección.\n5. Si el dispositivo no se detecta, prueba a reiniciar el Hub y repetir el proceso de inclusión.\n\nPara optimizar la red y realizar inclusiones exitosas, consulta las recomendaciones específicas en la sección \"Problemas específicos por protocolo\" del documento.\n\nSource: http://localhost:8080/troubleshooting_guide.md",
+          "evaluation": {
+            "score": 2,
+            "explanation": "The input provided was just a period, which does not offer any context or detail for a more meaningful response. Please share more information or clarify your question so I can better assist you."
+          }
+        }
+      ],
+      "timestamp": "2025-05-21T03:36:28.008Z"
+    },
+    {
+      "query": "¿Cómo actualizar el firmware?",
+      "results": [
+        {
+          "modelName": "GPT-4o-mini",
+          "modelInfo": {
+            "name": "GPT-4o-mini",
+            "modelName": "gpt-4o-mini",
+            "provider": "OpenAI",
+            "description": "Modelo más reciente de OpenAI, versión mini"
+          },
+          "response": "Sí, puede programar las actualizaciones para que ocurran en horarios específicos o retrasarlas hasta por 7 días. Sin embargo, las actualizaciones críticas de seguridad se recomiendan instalar inmediatamente.\n\nSource: http://localhost:8080/faq.md",
+          "evaluation": {
+            "score": 5,
+            "explanation": "The user’s input consisted solely of a period, which doesn’t provide context or a clear request. As a result, it’s difficult to determine what kind of assistance is needed. Additional clarification or context would help in providing a more targeted and helpful response."
+          }
+        },
+        {
+          "modelName": "GPT-4-Nano",
+          "modelInfo": {
+            "name": "GPT-4-Nano",
+            "modelName": "gpt-4.1-nano-2025-04-14",
+            "provider": "OpenAI",
+            "description": "Modelo económico de OpenAI, versión nano"
+          },
+          "response": "Sí, puede programar las actualizaciones para que ocurran en horarios específicos o retrasarlas hasta por 7 días. Sin embargo, las actualizaciones críticas de seguridad se recomiendan instalar inmediatamente.\n\nSource: http://localhost:8080/faq.md",
+          "evaluation": {
+            "score": 10,
+            "explanation": "It appears your message contains only a period. Could you please clarify what you need assistance with or provide more details about your question?"
+          }
+        }
+      ],
+      "timestamp": "2025-05-21T03:36:40.192Z"
+    }
+  ]
+}
