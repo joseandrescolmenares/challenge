@@ -25,7 +25,8 @@ import {
   LLMResponse,
 } from '../interfaces/evaluation.interfaces';
 import { QueryResult } from '../../modules/embeddings/interfaces/embedding.interfaces';
-
+import { evaluateAnswersPrompt } from '../utils/prompt/evaluateAnswers.utils.prompt';
+import { MarkdownUtils } from 'src/utils/markdown-utils';
 const TEST_QUERIES = [
   '¿Cómo configurar mi SmartHome Hub por primera vez?',
   '¿Qué hago si mi dispositivo no se conecta?',
@@ -139,12 +140,14 @@ class LLMResponseEvaluator {
     }
   }
 
-  async generateResponse(query: string, model: ModelInfo): Promise<string> {
+  async generateResponse(
+    query: string,
+    model: ModelInfo,
+    documentation: QueryResult,
+  ): Promise<string> {
     console.log(`Generando respuesta con el modelo ${model.name}...`);
 
     try {
-      const documentation = (await this.getDocumentation(query)) as QueryResult;
-
       const messages: ChatCompletionMessageParam[] = [
         {
           role: AIRole.SYSTEM,
@@ -177,18 +180,25 @@ class LLMResponseEvaluator {
     query: string,
     response: string,
     model: ModelInfo,
+    documentation: QueryResult,
   ): Promise<LLMEvaluationResponse> {
     console.log(`Evaluando respuesta del modelo ${model.name}...`);
+
+    const documentationArray = documentation.metadatas.map(
+      (metadata: { fileName: string }) =>
+        MarkdownUtils.getDocumentByName(metadata?.fileName),
+    );
 
     try {
       const evaluationPrompt: ChatCompletionMessageParam[] = [
         {
           role: AIRole.SYSTEM,
-          content: ``,
+          content: evaluateAnswersPrompt(query, response, documentationArray)
+            .system,
         },
         {
           role: AIRole.USER,
-          content: `.`,
+          content: evaluateAnswersPrompt(query, response).user,
         },
       ];
 
@@ -229,12 +239,22 @@ class LLMResponseEvaluator {
       for (const model of LLM_MODELS) {
         try {
           console.log(`Evaluando modelo ${model.name}...`);
-          const response = await this.generateResponse(query, model);
+
+          const documentation = (await this.getDocumentation(
+            query,
+          )) as QueryResult;
+
+          const response = await this.generateResponse(
+            query,
+            model,
+            documentation,
+          );
 
           const evaluation = await this.evaluateResponse(
             query,
             response,
             model,
+            documentation,
           );
 
           queryResults.results.push({

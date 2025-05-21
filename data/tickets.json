@@ -193,7 +193,16 @@
       "createdAt": "2025-05-20T19:42:08.929Z",
       "userId": "23",
       "priority": "high"
+    },
+    {
+      "id": "TK-022",
+      "title": "Problemas de instalación del dispositivo SmartHome",
+      "description": "El usuario tiene dificultades con la instalación del dispositivo, mencionando que se queda pegado durante el proceso y no sabe cómo instalarlo.",
+      "status": "open",
+      "createdAt": "2025-05-21T18:42:53.896Z",
+      "userId": "26",
+      "priority": "medium"
     }
   ],
-  "lastId": 21
+  "lastId": 22
 }

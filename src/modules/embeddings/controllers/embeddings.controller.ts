@@ -13,7 +13,7 @@ export class EmbeddingsController {
 
   @Get('query')
   async queryDocuments(@Query('query') query: string): Promise<QueryResult> {
-    const searchQuery = query || '¿Qué hago si mi dispositivo no se conecta?';
+    const searchQuery = query || 'Como lo instalo?';
     return await this.vectorStoreService.queryDocuments(searchQuery);
   }
 }

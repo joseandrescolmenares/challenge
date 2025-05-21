@@ -2,23 +2,6 @@ export interface ToolResult {
   success: boolean;
   [key: string]: any;
 }
-
-export interface DocumentResult {
-  documentId: string;
-  fileName: string;
-  title: string;
-  relevance: string;
-  excerpt: string;
-  url: string;
-}
-
-export interface CreateTicketArgs {
-  title: string;
-  description: string;
-  priority: string;
-  contactEmail: string;
-}
-
 export interface CheckStatusArgs {
   service?: string;
 }
@@ -65,12 +48,9 @@ export interface ToolSchema {
   };
 }
 
-/**
- * Interface for a support ticket
- */
 export interface Ticket {
   id: string;
-  ticketId?: string; // Alternative ID field for compatibility
+  ticketId?: string;
   title: string;
   description: string;
   status: string;
@@ -79,9 +59,6 @@ export interface Ticket {
   priority: string;
 }
 
-/**
- * Interface for tickets data structure in JSON file
- */
 export interface TicketsData {
   lastId: number;
   tickets: Ticket[];

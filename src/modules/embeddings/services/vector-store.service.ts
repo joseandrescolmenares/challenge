@@ -50,7 +50,7 @@ export class VectorStoreService implements OnModuleInit {
 
   async addDocuments(
     documents: string[],
-    ids: string[],
+    ids?: string[],
     metadatas?: Record<string, unknown>[],
   ): Promise<AddDocumentsResult> {
     try {

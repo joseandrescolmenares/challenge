@@ -12,15 +12,6 @@ export interface SearchResult {
   score?: number;
 }
 
-export interface VectorStoreResult {
-  results: {
-    content: string;
-    metadata: Record<string, any>;
-    score: number;
-  }[];
-  totalResults: number;
-}
-
 export interface QueryResult {
   ids: string[];
   documents: string[];
@@ -34,13 +25,6 @@ export interface DocMetadata {
   source: string;
   [key: string]: any;
 }
-
-export interface VectorStoreDataResult {
-  totalChunks: number;
-  fileName: string;
-  message: string;
-}
-
 export interface EvaluationResponse {
   score: number;
   reasoning: string;
@@ -68,15 +52,6 @@ export interface DocMetadata {
     index?: number;
     [key: string]: any;
   };
-}
-export interface VectorStoreDataResult {
-  success: boolean;
-  data?: {
-    documents: (string | null)[];
-    metadatas: Record<string, any>[];
-  };
-  error?: string;
-  details?: string;
 }
 
 export interface DocumentProcessingConfig {

@@ -56,13 +56,14 @@ export class ChatService {
 
     state.userMessages.push(message);
 
-    if (
-      state.userMessages.length >= this.USER_MESSAGES_TO_ANALYZE &&
-      !state.ticketSuggested
-    ) {
+    if (state.userMessages.length % this.USER_MESSAGES_TO_ANALYZE === 0) {
       try {
+        const recentMessages = state.userMessages.slice(
+          -this.USER_MESSAGES_TO_ANALYZE,
+        );
+
         const ticketAnalysis = await this.shouldSuggestTicketCreation(
-          state.userMessages,
+          recentMessages,
           conversationId,
         );
 
@@ -327,22 +328,5 @@ export class ChatService {
       this.logger.error('Error analyzing messages for ticket creation:', error);
       return { needsTicket: false };
     }
-  }
-
-  /**
-   * Clears the conversation history for a given conversation
-   * @param conversationId - Unique conversation identifier
-   */
-  clearConversationHistory(conversationId: string): void {
-    this.conversationStates.delete(conversationId);
-  }
-
-  /**
-   * Gets the conversation history for a given conversation
-   * @param conversationId - Unique conversation identifier
-   * @returns Array of conversation messages
-   */
-  getConversationHistory(conversationId: string): ChatCompletionMessageParam[] {
-    return this.conversationStates.get(conversationId)?.history || [];
   }
 }
