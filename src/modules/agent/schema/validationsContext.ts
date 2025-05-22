@@ -7,17 +7,17 @@ export const ValidationsContext = z.object({
 
   title: z
     .string()
-    .optional()
+    .nullish()
     .describe('Ticket title (required if isTicket is true)'),
 
   description: z
     .string()
-    .optional()
+    .nullish()
     .describe('Ticket description (required if isTicket is true)'),
 
   priority: z
     .string()
-    .optional()
+    .nullish()
     .describe(
       'Ticket priority level: high, medium, or low (required if isTicket is true)',
     ),
@@ -30,7 +30,7 @@ export const ValidationsContext = z.object({
 
   existingTicketId: z
     .string()
-    .optional()
+    .nullish()
     .describe(
       'ID of the existing similar ticket (when existingTicket is true)',
     ),

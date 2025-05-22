@@ -6,33 +6,6 @@ export interface ConversationState {
   attemptCount: number;
   ticketSuggested: boolean;
 }
-export interface TicketAnalysisResponse {
-  needsTicket: boolean;
-  ticketMessage?: string;
-  existingTicketId?: string;
-}
-
-export interface ValidatedTicketResponse {
-  isTicket: boolean;
-  title?: string;
-  description?: string;
-  priority?: string;
-  existingTicket?: {
-    id?: string;
-    ticketId?: string;
-    title?: string;
-    status?: string;
-  };
-}
-
-export interface TicketResult {
-  success: boolean;
-  message: string;
-  ticket?: {
-    ticketId: string;
-    [key: string]: any;
-  };
-}
 
 export interface CompletionResponse {
   id: string;

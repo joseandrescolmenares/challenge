@@ -6,6 +6,7 @@ import {
   ToolCall,
   ToolResult,
   TicketsData,
+  CreateTicketArgs,
 } from '../interfaces/tool.interfaces';
 
 import * as fs from 'fs';
@@ -26,6 +27,15 @@ export class ToolsExecutorService {
           const typedArgs = parsedArgs as CheckStatusArgs;
           return this.checkServiceStatus(typedArgs.service);
         }
+        case 'createTicket': {
+          const typedArgs = parsedArgs as CreateTicketArgs;
+          return this.createSupportTicket(
+            typedArgs.title,
+            typedArgs.description,
+            typedArgs.priority,
+            typedArgs?.conversationId,
+          );
+        }
         default:
           throw new Error(`Función desconocida: ${name}`);
       }
@@ -43,7 +53,7 @@ export class ToolsExecutorService {
     title: string,
     description: string,
     priority: string = 'media',
-    conversationId: string,
+    conversationId?: string,
   ): ToolResult {
     try {
       const ticketsFilePath = path.join(process.cwd(), 'data', 'tickets.json');
@@ -59,12 +69,12 @@ export class ToolsExecutorService {
 
       const newTicket = {
         id: ticketId,
-        title,
-        description,
+        title: title || 'Sin título',
+        description: description || 'Sin descripción',
         status: 'open',
         createdAt: new Date().toISOString(),
         userId: conversationId,
-        priority,
+        priority: priority || 'medium',
       };
       ticketsData.tickets.push(newTicket as never);
       ticketsData.lastId = newId;

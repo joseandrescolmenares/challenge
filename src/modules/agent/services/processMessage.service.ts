@@ -6,24 +6,15 @@ import { ChatCompletionMessageParam } from 'openai/resources/chat';
 import { AIRole } from 'src/modules/llm/enum/roles.enum';
 import { VectorStoreService } from '../../embeddings/services/vector-store.service';
 import { agentPrompt } from '../utils/prompts/agent.prompt';
-import { ValidationsContext } from '../schema/validationsContext';
 import {
   ConversationState,
-  TicketAnalysisResponse,
-  TicketResult,
-  ValidatedTicketResponse,
   CompletionResponse,
 } from '../interfaces/agent.interfaces';
-import { agentValidationPrompt } from '../utils/prompts/agentValidation.prompt';
-import { TicketsData } from 'src/modules/tools/interfaces/tool.interfaces';
-import * as fs from 'fs';
-import * as path from 'path';
 import { ChatCompletionMessageToolCall } from 'openai/resources/chat';
-import { OpenAIModel } from 'src/modules/llm/enum/model.enum';
+
 @Injectable()
 export class ChatService {
   private conversationStates: Map<string, ConversationState> = new Map();
-  private readonly USER_MESSAGES_TO_ANALYZE = 5;
   private readonly logger = new Logger(ChatService.name);
 
   constructor(
@@ -54,40 +45,8 @@ export class ChatService {
       });
     }
 
-    state.userMessages.push(message);
-
-    if (state.userMessages.length % this.USER_MESSAGES_TO_ANALYZE === 0) {
-      try {
-        const recentMessages = state.userMessages.slice(
-          -this.USER_MESSAGES_TO_ANALYZE,
-        );
-
-        const ticketAnalysis = await this.shouldSuggestTicketCreation(
-          recentMessages,
-          conversationId,
-        );
-
-        if (ticketAnalysis.needsTicket && ticketAnalysis.ticketMessage) {
-          state.ticketSuggested = true;
-
-          history.push({
-            role: AIRole.ASSISTANT,
-            content: ticketAnalysis.ticketMessage,
-          });
-
-          this.updateConversationState(conversationId, state);
-
-          return {
-            message: ticketAnalysis.ticketMessage,
-            history: history,
-          };
-        }
-      } catch (error) {
-        this.logger.error('Error analyzing ticket creation need:', error);
-      }
-    }
-
     history.push({ role: AIRole.USER, content: message });
+    state.userMessages.push(message);
 
     try {
       const response = (await this.llmService.getCompletion({
@@ -224,109 +183,5 @@ export class ChatService {
     state: ConversationState,
   ): void {
     this.conversationStates.set(conversationId, state);
-  }
-
-  /**
-   * Analyzes user messages to determine if a support ticket should be created
-   * @param messages - Array of user messages
-   * @param conversationId - Unique conversation identifier
-   * @returns Analysis result
-   */
-  private async shouldSuggestTicketCreation(
-    messages: string[],
-    conversationId: string,
-  ): Promise<TicketAnalysisResponse> {
-    const ticketsFilePath = path.join(process.cwd(), 'data', 'tickets.json');
-    let ticketsData: TicketsData = { lastId: 0, tickets: [] };
-
-    try {
-      if (fs.existsSync(ticketsFilePath)) {
-        const fileContent = fs.readFileSync(ticketsFilePath, 'utf8');
-        ticketsData = JSON.parse(fileContent) as TicketsData;
-      }
-
-      const lastMessages = messages.slice(-this.USER_MESSAGES_TO_ANALYZE);
-      const messagesFormatted = lastMessages
-        .map((msg, i) => `Message ${i + 1}: "${msg}"`)
-        .join('\n');
-
-      const promptMessages: ChatCompletionMessageParam[] = [
-        {
-          role: AIRole.SYSTEM,
-          content: agentValidationPrompt(
-            messages,
-            messagesFormatted,
-            ticketsData.tickets,
-          ).system,
-        },
-        {
-          role: AIRole.USER,
-          content: agentValidationPrompt(messages, messagesFormatted).user,
-        },
-      ];
-
-      const llmResponse = await this.llmService.getCompletion({
-        messages: promptMessages,
-        tools: null,
-        toolChoice: 'auto',
-        schema: ValidationsContext,
-        model: OpenAIModel.GPT4_1_NANO,
-        maxTokens: null,
-      });
-
-      if (typeof llmResponse === 'object' && llmResponse !== null) {
-        const validatedResponse =
-          llmResponse as unknown as ValidatedTicketResponse;
-
-        if (!validatedResponse.isTicket && validatedResponse.existingTicket) {
-          const existingTicket = validatedResponse.existingTicket;
-          const status = existingTicket.status || 'pending';
-          const ticketId =
-            existingTicket.id || existingTicket.ticketId || 'unknown';
-
-          const existingTicketMessage = `He identificado que su problema es similar a uno ya reportado en nuestro sistema. El estado actual es: ${status.toUpperCase()}. Nuestro equipo técnico está trabajando en una solución.`;
-
-          return {
-            needsTicket: true,
-            ticketMessage: existingTicketMessage,
-            existingTicketId: String(ticketId),
-          };
-        }
-
-        if (
-          validatedResponse.isTicket &&
-          validatedResponse.title &&
-          validatedResponse.description &&
-          validatedResponse.priority
-        ) {
-          const result = this.toolsExecutorService.createSupportTicket(
-            validatedResponse.title,
-            validatedResponse.description,
-            validatedResponse.priority,
-            conversationId,
-          ) as TicketResult;
-
-          let ticketId = 'unknown';
-
-          if (result.success && result.ticket && 'ticketId' in result.ticket) {
-            ticketId = String(result.ticket.ticketId);
-          } else {
-            ticketId = Date.now().toString().slice(-6);
-          }
-
-          const ticketMessage = `Parece que estás enfrentando un problema persistente. He creado un ticket de soporte con el ID: #${ticketId}. Un técnico especializado revisará tu caso pronto y se pondrá en contacto contigo. Mientras tanto, puedo seguir ayudándote con otras consultas.`;
-
-          return {
-            needsTicket: true,
-            ticketMessage: ticketMessage,
-          };
-        }
-      }
-
-      return { needsTicket: false };
-    } catch (error) {
-      this.logger.error('Error analyzing messages for ticket creation:', error);
-      return { needsTicket: false };
-    }
   }
 }

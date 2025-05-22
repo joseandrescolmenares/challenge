@@ -63,3 +63,10 @@ export interface TicketsData {
   lastId: number;
   tickets: Ticket[];
 }
+
+export interface CreateTicketArgs {
+  title: string;
+  description: string;
+  priority: string;
+  conversationId?: string;
+}

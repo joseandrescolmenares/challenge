@@ -202,7 +202,41 @@
       "createdAt": "2025-05-21T18:42:53.896Z",
       "userId": "26",
       "priority": "medium"
+    },
+    {
+      "id": "TK-023",
+      "title": "Installation issue – device screen remains blank",
+      "description": "User reports trying to install the device but it stays on a blank screen. Multiple setup steps attempted without success.",
+      "status": "open",
+      "createdAt": "2025-05-21T22:06:31.781Z",
+      "userId": "1002",
+      "priority": "high"
+    },
+    {
+      "id": "TK-024",
+      "title": "Installation issue – device screen remains blank",
+      "description": "User reports that the device screen stays blank during installation. Tried following the instructions but the issue persists.",
+      "status": "open",
+      "createdAt": "2025-05-21T22:20:55.177Z",
+      "userId": "1003",
+      "priority": "high"
+    },
+    {
+      "id": "TK-029",
+      "title": "Pantalla en blanco en el SmartHome Hub X1000",
+      "description": "El dispositivo no muestra ninguna imagen en la pantalla, incluso después de realizar un restablecimiento de fábrica. Se ha probado reiniciar, cambiar fuente de alimentación y verificar conexiones, pero el problema persiste.",
+      "status": "open",
+      "createdAt": "2025-05-22T00:42:55.287Z",
+      "priority": "high"
+    },
+    {
+      "id": "TK-030",
+      "title": "Problema al acceder a la configuración de la app",
+      "description": "No puedo acceder a la configuración de la SmartHome Hub X1000, la aplicación se queda pegada incluso después de reiniciar y actualizar la app. Ya intenté reiniciar el dispositivo y usar otra app sin éxito.",
+      "status": "open",
+      "createdAt": "2025-05-22T01:21:32.519Z",
+      "priority": "high"
     }
   ],
-  "lastId": 22
+  "lastId": 30
 }
