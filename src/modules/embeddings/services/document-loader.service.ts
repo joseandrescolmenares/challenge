@@ -12,7 +12,7 @@ import { ChatOpenAI } from '@langchain/openai';
 import { ConfigService } from '@nestjs/config';
 import { AIRole } from '../../llm/enum/roles.enum';
 @Injectable()
-export class DocumentLoaderService {
+export class DocumentLoaderService implements OnModuleInit {
   private readonly logger = new Logger(DocumentLoaderService.name);
   private readonly DOCS_PATH: string;
   private readonly markdownSplitter: MarkdownTextSplitter;
@@ -53,15 +53,15 @@ export class DocumentLoaderService {
     this.logger.log(`Using model: ${this.config.modelName}`);
   }
 
-  // async onModuleInit() {
-  //   try {
-  //     this.logger.log('Starting document loading process...');
-  //     await this.loadDocuments();
-  //     this.logger.log('Documents loaded successfully');
-  //   } catch (error) {
-  //     this.logger.error('Error loading documents:', error);
-  //   }
-  // }
+  async onModuleInit() {
+    try {
+      this.logger.log('Starting document loading process...');
+      await this.loadDocuments();
+      this.logger.log('Documents loaded successfully');
+    } catch (error) {
+      this.logger.error('Error loading documents:', error);
+    }
+  }
 
   async loadDocuments(): Promise<void> {
     const files = this.getMarkdownFiles();

@@ -27,6 +27,8 @@ import {
 import { QueryResult } from '../../modules/embeddings/interfaces/embedding.interfaces';
 import { evaluateAnswersPrompt } from '../utils/prompt/evaluateAnswers.utils.prompt';
 import { MarkdownUtils } from 'src/utils/markdown-utils';
+import { ToolsRegistryService } from '../../modules/tools/services/tools-registry.service';
+
 const TEST_QUERIES = [
   '¿Cómo configurar mi SmartHome Hub por primera vez?',
   '¿Qué hago si mi dispositivo no se conecta?',
@@ -100,6 +102,7 @@ class LLMResponseEvaluator {
   private reportService: ReportService;
   private apiKey: string;
   private configService: ConfigService;
+  private toolsRegistryService: ToolsRegistryService;
 
   constructor() {
     this.apiKey = process.env.OPENAI_API_KEY || '';
@@ -160,6 +163,8 @@ class LLMResponseEvaluator {
       ];
 
       const response = (await this.llmService.getCompletion({
+        tools: this.toolsRegistryService.getAllTools(),
+        toolChoice: 'auto',
         messages,
       })) as LLMResponse;
 
