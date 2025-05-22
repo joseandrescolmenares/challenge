@@ -54,7 +54,6 @@ export class VectorStoreService implements OnModuleInit {
     metadatas?: Record<string, unknown>[],
   ): Promise<AddDocumentsResult> {
     try {
-      console.log('Añadiendo testttttt', documents);
       const langchainDocs = documents.map((text, i) => {
         return new LangchainDocument({
           pageContent: text,
@@ -86,7 +85,7 @@ export class VectorStoreService implements OnModuleInit {
 
   async queryDocuments(
     query: string,
-    nResults: number = 1,
+    nResults: number = 3,
   ): Promise<QueryResult> {
     try {
       const results = await this.vectorStore.similaritySearch(query, nResults);

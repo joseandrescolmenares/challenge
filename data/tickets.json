@@ -236,7 +236,23 @@
       "status": "open",
       "createdAt": "2025-05-22T01:21:32.519Z",
       "priority": "high"
+    },
+    {
+      "id": "TK-031",
+      "title": "SmartHome Hub X1000 no inicia tras varios intentos",
+      "description": "El usuario intentó: 1) Desconectar y reconectar el Hub, 2) Usar el adaptador original y diferentes enchufes, 3) Reinicio de fábrica con el botón de reinicio, 4) Probar otros cables/adaptadores, 5) Encender en diferentes habitaciones y condiciones ambientales, 6) Dejar desconectado por 10 minutos. El Hub sigue sin responder ni avanzar en el proceso de inicio.",
+      "status": "open",
+      "createdAt": "2025-05-22T05:26:55.215Z",
+      "priority": "high"
+    },
+    {
+      "id": "TK-032",
+      "title": "Pantalla en blanco durante la instalación del SmartHome Hub X1000",
+      "description": "El usuario ha intentado reiniciar el Hub, verificar la conexión de energía, probar con otro enchufe, actualizar el firmware, realizar un restablecimiento de fábrica, verificar el cable HDMI, probar con otro cable o pantalla, revisar las conexiones internas, desactivar dispositivos externos, y consultar el manual de usuario. Además, el servicio API está experimentando un rendimiento degradado.",
+      "status": "open",
+      "createdAt": "2025-05-22T05:37:43.958Z",
+      "priority": "high"
     }
   ],
-  "lastId": 30
+  "lastId": 32
 }

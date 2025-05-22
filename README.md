@@ -1,98 +1,199 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🚀 Tech Support Assistant (NestJS)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+> Asistente de soporte técnico potenciado por IA. Integra modelos de lenguaje (LLM), embeddings y evaluación de respuestas.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
+## 📁 Estructura del Proyecto
 
 ```bash
-$ npm install
+tech-support-assistant/
+
+├── src/                        # Código fuente principal
+│   ├── main.ts                 # Punto de entrada
+│   ├── app.module.ts           # Módulo raíz
+│   ├── app.controller.ts       # Controlador principal
+│   ├── app.service.ts          # Servicio principal
+│   ├── modules/                # Módulos funcionales
+│   │   ├── llm/                # Modelos de lenguaje
+│   │   ├── agent/              # Agentes conversacionales
+│   │   ├── embeddings/         # Embeddings y vectores
+│   │   ├── tools/              # Herramientas auxiliares
+│   │          
+│   └── utils/                  # Utilidades generales
+    └── evaluation/             # Evaluación de modelos y resultados      
+├── data/                       # Datos y documentación técnica
+│   ├── tickets.json            # Tickets de soporte de ejemplo
+│   ├── service-status.json     # Estado de servicios para simulaciones
+│   └── docs/                   # Documentación técnica del producto
+│       ├── faq.md
+│       ├── technical_specifications.md
+│       ├── troubleshooting_guide.md
+│       ├── configuration_manual.md
+│       └── installation_guide.md
+├── test/                       # Pruebas unitarias e integración
+├── .env                        # Variables de entorno
+├── .env.example                # Ejemplo de variables de entorno
+├── README.md                   # Documentación principal
+├── package.json                # Dependencias y scripts npm
+├── nest-cli.json               # Configuración de NestJS CLI
+├── tsconfig.json               # Configuración TypeScript
+├── eslint.config.mjs           # Configuración ESLint
+└── .prettierrc                 # Configuración Prettier
 ```
 
-## Compile and run the project
+---
+
+## 📸 Arquitectura General
+
+Para comprender la organización del sistema y la interacción entre módulos, consulta el siguiente diagrama:
+
+![Diagrama de Arquitectura](./docs/images/diagrama-arquitectura.png)
+
+---
+
+## 🔍 Técnica de Fragmentación y Recuperación de Contexto
+
+Para mejorar la precisión en las respuestas, implementamos un **Context Retriever** mediante fragmentación (chunking) de documentos:
+
+1. Dividimos los documentos en fragmentos (chunks) de texto.
+2. Cada chunk se procesa con un LLM para extraer contexto relevante.
+3. Generamos y almacenamos embeddings de los chunks en ChromaDB para recuperación semántica.
+4. Al atender una consulta, recuperamos los chunks más relevantes y los presentamos al LLM como contexto adicional.
+
+---
+
+## 🛠️ Tecnologías Principales
+
+- **NestJS**: Framework backend modular.
+- **LangChain**: Fragmentación de texto y orquestación de cadenas.
+- **ChromaDB**: Almacenamiento y recuperación de vectores semánticos.
+- **OpenAI API**: Generación de embeddings y razonamiento LLM.
+- **TypeScript**, **ESLint**, **Prettier**, **Jest**: Calidad de código, estilo y pruebas.
+
+---
+
+## 📊 Evaluación de Modelos y Embeddings
+
+Realizamos pruebas para medir el rendimiento y precisión de diferentes configuraciones:
+
+- **Embeddings**: Comparativa entre `OpenAI_Small` (1536 dimensiones) y `Cohere_Medium` (768 dimensiones).
+
+  ![Evaluación Embeddings](./docs/images/evalsChuck.png)
+
+- **Respuestas LLM**: Evaluación de precisión de agentes conversacionales.
+
+  ![Evaluación Respuestas](./docs/images/evals.png)
+
+Puedes ejecutar los scripts de evaluación con:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npx ts-node src/evaluation/scripts/evaluate-embeddings.ts
+npx ts-node src/evaluation/scripts/evaluate-llm-responses.ts
 ```
 
-## Run tests
+## 🔧 Configuración de Variables de Entorno
+
+Antes de ejecutar el proyecto, copia el archivo `.env.example` a `.env` y completa las variables de entorno:
+
+```env
+OPENAI_API_KEY="tu_openai_api_key"
+COHERE_API_KEY="tu_cohere_api_key"
+URL_DOCS=http://localhost:8080
+```
+
+## ⏳ Primer Arranque y Embeddings
+
+Al iniciar la aplicación con:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run start:dev
 ```
 
-## Deployment
+esspera a que termine el proceso de generación de embeddings de todos los documentos. Verás logs similares a:
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+```text
+[Nest] 51030 - 05/22/2025, 2:21:27 AM LOG [DocumentLoaderService] Documents loaded successfully
+Servicio de vectores inicializado correctamente
+[Nest] 51030 - 05/22/2025, 2:21:27 AM LOG [NestApplication] Nest application successfully started +2ms
+Aplicación disponible en: http://localhost:8080
+```
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Solo una vez completado este paso podrás interactuar con el endpoint `/chat`.
+
+## 🚀 Prueba del Agente Conversacional
+
+Para probar el agente, envía un **POST** a la siguiente ruta:
+
+`http://localhost:8080/chat`
+
+Con el siguiente payload en formato JSON:
+
+```json
+{
+  "message": "hola",
+  "conversationId": "1"
+}
+```
+
+Por ejemplo, usando **curl**:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+curl -X POST http://localhost:8080/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message":"hola","conversationId":"1"}'
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## 🗂️ Datos y Documentación Técnica
 
-Check out a few resources that may come in handy when working with NestJS:
+En la carpeta `data/` se incluye información de ejemplo y documentación del producto:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+- **tickets.json**: Tickets de soporte simulados.
+- **service-status.json**: Estados de servicios para pruebas.
+- **docs/**: Documentación técnica en formato Markdown:
+  - `faq.md`: Preguntas frecuentes.
+  - `technical_specifications.md`: Especificaciones técnicas.
+  - `troubleshooting_guide.md`: Guía de resolución de problemas.
+  - `configuration_manual.md`: Manual de configuración.
+  - `installation_guide.md`: Guía de instalación.
 
-## Support
+---
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## ⚙️ Instalación y Ejecución
 
-## Stay in touch
+1. Clona el repositorio:
+   ```bash
+git clone <https://github.com/joseandrescolmenares/challenge.git>
+cd tech-support-assistant
+```  
+2. Instala las dependencias:
+   ```bash
+npm install
+```  
+3. Ejecuta la aplicación en modo desarrollo:
+   ```bash
+npm run start:dev
+```  
+4. Inicia ChromaDB en otra terminal:
+   ```bash
+chroma run
+```  
+5. (Opcional) Corre evaluaciones:
+   ```bash
+npx ts-node src/evaluation/scripts/evaluate-embeddings.ts
+npx ts-node src/evaluation/scripts/evaluate-llm-responses.ts
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+---
 
-## License
+## 📝 Breve Informe de Diseño
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### ¿Por qué elegimos estas tecnologías?
+
+Bueno, principalmente utilizamos **LangChain** para hacer el splitter de texto, ya que nos brinda una función lista para usar que ahorra tiempo y líneas de código. Además, aprovechamos sus chains que se integran de forma muy sencilla con **ChromaDB**, facilitando la indexación y la recuperación semántica de los fragmentos.
+
+Elegimos **ChromaDB** porque es una vector store open source, ligera y de fácil configuración. Para la generación de embeddings y el razonamiento LLM, confiamos en **OpenAI API**, ya que ofrece modelos robustos, bien documentados y en constante evolución.
+
+Por último, implementamos scripts de evaluación para medir precisión y rendimiento, permitiéndonos iterar rápidamente y ajustar parámetros hasta encontrar el equilibrio óptimo entre velocidad y calidad de las respuestas.

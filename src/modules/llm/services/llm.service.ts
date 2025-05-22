@@ -12,7 +12,7 @@ import { OpenAIModel } from '../enum/model.enum';
 @Injectable()
 export class LLMService {
   private openai: OpenAI;
-  private readonly defaultModel = OpenAIModel.GPT4_1_NANO;
+  private readonly defaultModel = OpenAIModel.GPT4O;
 
   constructor() {
     const apiKey = process.env.OPENAI_API_KEY;
