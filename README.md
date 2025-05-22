@@ -48,7 +48,7 @@ tech-support-assistant/
 
 Para comprender la organización del sistema y la interacción entre módulos, consulta el siguiente diagrama:
 
-![Diagrama de Arquitectura](./docs/images/diagrama-arquitectura.png)
+![Diagrama de Arquitectura](./data/image/arquitecture.png)
 
 ---
 
@@ -79,11 +79,11 @@ Realizamos pruebas para medir el rendimiento y precisión de diferentes configur
 
 - **Embeddings**: Comparativa entre `OpenAI_Small` (1536 dimensiones) y `Cohere_Medium` (768 dimensiones).
 
-  ![Evaluación Embeddings](./docs/images/evalsChuck.png)
+  ![Evaluación Embeddings](./data/image/evalsChuck.png)
 
 - **Respuestas LLM**: Evaluación de precisión de agentes conversacionales.
 
-  ![Evaluación Respuestas](./docs/images/evals.png)
+  ![Evaluación Respuestas](./data/image/evals.png)
 
 Puedes ejecutar los scripts de evaluación con:
 
@@ -164,24 +164,24 @@ En la carpeta `data/` se incluye información de ejemplo y documentación del pr
 ## ⚙️ Instalación y Ejecución
 
 1. Clona el repositorio:
-   ```bash
+```bash
 git clone <https://github.com/joseandrescolmenares/challenge.git>
 cd tech-support-assistant
 ```  
 2. Instala las dependencias:
-   ```bash
+```bash
 npm install
 ```  
 3. Ejecuta la aplicación en modo desarrollo:
-   ```bash
+```bash
 npm run start:dev
 ```  
 4. Inicia ChromaDB en otra terminal:
-   ```bash
+```bash
 chroma run
 ```  
 5. (Opcional) Corre evaluaciones:
-   ```bash
+```bash
 npx ts-node src/evaluation/scripts/evaluate-embeddings.ts
 npx ts-node src/evaluation/scripts/evaluate-llm-responses.ts
 ```
