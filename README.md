@@ -197,3 +197,16 @@ Bueno, principalmente utilizamos **LangChain** para hacer el splitter de texto, 
 Elegimos **ChromaDB** porque es una vector store open source, ligera y de fácil configuración. Para la generación de embeddings y el razonamiento LLM, confiamos en **OpenAI API**, ya que ofrece modelos robustos, bien documentados y en constante evolución.
 
 Por último, implementamos scripts de evaluación para medir precisión y rendimiento, permitiéndonos iterar rápidamente y ajustar parámetros hasta encontrar el equilibrio óptimo entre velocidad y calidad de las respuestas.
+
+## 💡 Mejora y Extensiones Futuras
+
+En un chatbot de soporte, la creación indiscriminada de tickets puede saturar el sistema con casos similares. Para mitigar esto:
+
+- Al recibir una solicitud de ticket, primero compara la descripción con tickets existentes usando un LLM.
+- Si el ticket es **similar** a uno existente, añade al usuario a ese ticket en lugar de crear uno nuevo.
+- Si no es similar, crea un nuevo ticket normalmente.
+
+Para mejorar la precisión de la recuperación de información:
+
+- Combina la búsqueda semántica (embeddings) con un índice de búsqueda tradicional (por ejemplo, TF-IDF).
+- Fusiona los resultados de ambos índices y aplica un re-ranker para seleccionar los fragmentos (chunks) más relevantes.
