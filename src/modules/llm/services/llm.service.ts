@@ -28,12 +28,12 @@ export class LLMService {
   }
 
   /**
-   * Obtiene una respuesta del modelo LLM
-   * @param messages Mensajes para el chat
-   * @param tools Herramientas disponibles
-   * @param toolChoice Opción de herramienta
-   * @param schema Esquema zod para validación
-   * @returns Respuesta del modelo
+   * Gets a response from the LLM model
+   * @param messages Messages for the chat
+   * @param tools Available tools
+   * @param toolChoice Tool option
+   * @param schema Zod schema for validation
+   * @returns Model response
    */
   async getCompletion<T = any>({
     messages,
@@ -75,9 +75,7 @@ export class LLMService {
           });
 
           if (parsed.choices[0].finish_reason === 'length') {
-            throw new Error(
-              'Respuesta incompleta debido a la limitación de tokens',
-            );
+            throw new Error('Incomplete response due to token limitation');
           }
 
           const response = parsed.choices[0].message;
@@ -87,18 +85,18 @@ export class LLMService {
           } else if (response.parsed) {
             return response.parsed as T;
           } else {
-            throw new Error('No se recibió contenido en la respuesta');
+            throw new Error('No content received in the response');
           }
         } catch (error) {
-          console.error('Error al analizar respuesta de OpenAI:', error);
-          throw new Error('Error al procesar la respuesta estructurada');
+          console.error('Error parsing OpenAI response:', error);
+          throw new Error('Error processing structured response');
         }
       } else {
         const response = await this.openai.chat.completions.create(params);
         return response;
       }
     } catch (error) {
-      console.error('Error en la llamada a OpenAI:', error);
+      console.error('Error in OpenAI call:', error);
       throw error;
     }
   }

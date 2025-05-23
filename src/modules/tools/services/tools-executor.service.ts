@@ -37,13 +37,13 @@ export class ToolsExecutorService {
           );
         }
         default:
-          throw new Error(`Función desconocida: ${name}`);
+          throw new Error(`Unknown function: ${name}`);
       }
     } catch (error) {
-      console.error('Error ejecutando la función:', error);
+      console.error('Error executing function:', error);
       return {
         success: false,
-        error: 'Error al ejecutar la función',
+        error: 'Error executing function',
         details: error instanceof Error ? error.message : String(error),
       };
     }
@@ -69,8 +69,8 @@ export class ToolsExecutorService {
 
       const newTicket = {
         id: ticketId,
-        title: title || 'Sin título',
-        description: description || 'Sin descripción',
+        title: title || 'No title',
+        description: description || 'No description',
         status: 'open',
         createdAt: new Date().toISOString(),
         userId: conversationId,
@@ -93,11 +93,11 @@ export class ToolsExecutorService {
         message: `Ticket ${ticketId} creado correctamente. Un técnico se pondrá en contacto pronto.`,
       };
     } catch (error) {
-      console.error('Error al crear ticket:', error);
+      console.error('Error creating ticket:', error);
       return {
         success: false,
-        error: 'No se pudo crear el ticket',
-        details: error instanceof Error ? error.message : 'Error desconocido',
+        error: 'Could not create ticket',
+        details: error instanceof Error ? error.message : 'Unknown error',
       };
     }
   }
@@ -130,7 +130,7 @@ export class ToolsExecutorService {
     if (!statuses[service]) {
       return {
         success: false,
-        error: `Servicio desconocido: ${service}`,
+        error: `Unknown service: ${service}`,
         availableServices: Object.keys(statuses),
       };
     }

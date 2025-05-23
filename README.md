@@ -172,14 +172,15 @@ cd tech-support-assistant
 ```bash
 npm install
 ```  
-3. Ejecuta la aplicación en modo desarrollo:
-```bash
-npm run start:dev
-```  
-4. Inicia ChromaDB en otra terminal:
+3. Inicia ChromaDB en otra terminal:
 ```bash
 chroma run
 ```  
+4. Ejecuta la aplicación en modo desarrollo:
+```bash
+npm run start:dev
+```  
+
 5. (Opcional) Corre evaluaciones:
 ```bash
 npx ts-node src/evaluation/scripts/evaluate-embeddings.ts

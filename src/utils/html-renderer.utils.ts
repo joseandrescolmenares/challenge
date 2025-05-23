@@ -35,7 +35,6 @@ export function renderDocumentPage(title: string, content: string): string {
       </div>
     </div>
     <script>
-      // Renderizar Markdown a HTML
       document.getElementById('content').innerHTML = marked.parse(\`${escapedContent}\`);
     </script>
   </body>
